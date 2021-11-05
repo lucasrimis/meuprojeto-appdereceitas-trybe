@@ -55,12 +55,16 @@ function Header() {
     <header>
       <div>
         <Link to="/perfil">
-          <img scr={ profileIcon } alt="IconePerfil" data-testid="profile-top-btn" />
+          <div>
+            <img src={ profileIcon } alt="IconePerfil" data-testid="profile-top-btn" />
+          </div>
         </Link>
+
+        <h1 data-testid="page-title">Comidas</h1>
+
         <button type="button" onClick={ () => setSearchClick(!searchClick) }>
-          <img scr={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
         </button>
-        <h1 data-testid="page-title">Comida</h1>
       </div>
       {searchClick && renderSearch()}
     </header>
