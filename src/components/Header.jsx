@@ -51,6 +51,17 @@ function Header() {
     </div>
   );
 
+  const renderHeader = () => {
+    const pathname = window.location.pathname.split('');
+    const seila = pathname.shift();
+    console.log(seila);
+    return (
+      <h1>
+        { pathname.join('').charAt(0).toUpperCase() + pathname.join('').slice(1) }
+      </h1>
+    );
+  };
+
   return (
     <header>
       <div>
@@ -60,7 +71,7 @@ function Header() {
           </div>
         </Link>
 
-        <h1 data-testid="page-title">Comidas</h1>
+        { renderHeader() }
 
         <button type="button" onClick={ () => setSearchClick(!searchClick) }>
           <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
