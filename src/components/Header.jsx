@@ -16,21 +16,27 @@ function Header() {
   const [searchClick, setSearchClick] = useState(false);
   const { pageName, showButton } = useContext(MyContext);
   const [value, setValue] = useState('');
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('ingredient');
 
   const getFood = async () => {
     if (searchValue === 'ingredient') {
       const ingredients = await getMealIngredients(value);
-      console.log(ingredients.meals);
+      if (ingredients.meals.length === 1) {
+        window.location.href = `/comidas/${ingredients.meals[0].idMeal}`;
+      }
     } else if (searchValue === 'name') {
       const name = await getMealName(value);
-      console.log(name.meals);
+      if (name.meals.length === 1) {
+        window.location.href = `/comidas/${name.meals[0].idMeal}`;
+      }
     } else if (searchValue === 'first') {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
         const firstLetter = await getMealFirstLetter(value);
-        console.log(firstLetter.meals);
+        if (firstLetter.meals.length === 1) {
+          window.location.href = `/comidas/${firstLetter.meals[0].idMeal}`;
+        }
       }
     }
   };
@@ -38,16 +44,22 @@ function Header() {
   const getDrink = async () => {
     if (searchValue === 'ingredient') {
       const ingredients = await getDrinkIngredients(value);
-      console.log(ingredients.drinks);
+      if (ingredients.drinks.length === 1) {
+        window.location.href = `/bebidas/${ingredients.drinks[0].idDrink}`;
+      }
     } else if (searchValue === 'name') {
       const name = await getDrinkName(value);
-      console.log(name.drinks);
+      if (name.drinks.length === 1) {
+        window.location.href = `/bebidas/${name.drinks[0].idDrink}`;
+      }
     } else if (searchValue === 'first') {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
         const firstLetter = await getDrinkFirstLetter(value);
-        console.log(firstLetter.drinks);
+        if (firstLetter.drinks.length === 1) {
+          window.location.href = `/bebidas/${firstLetter.drinks[0].idDrink}`;
+        }
       }
     }
   };
