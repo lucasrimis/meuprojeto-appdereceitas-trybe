@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import MyContext from '../Context';
 
 function Header() {
   const [searchClick, setSearchClick] = useState(false);
+  const { pageName, showButton } = useContext(MyContext);
   // const [searchValue, setSearchValue] = useState('');
 
   const renderSearch = () => (
@@ -51,14 +53,14 @@ function Header() {
     </div>
   );
 
-  const renderHeader = () => {
-    const pathname = window.location.pathname.split('');
-    const seila = pathname.shift();
-    console.log(seila);
+  const renderExplore = () => {
+    if (!showButton) {
+      return null;
+    }
     return (
-      <h1>
-        { pathname.join('').charAt(0).toUpperCase() + pathname.join('').slice(1) }
-      </h1>
+      <button type="button" onClick={ () => setSearchClick(!searchClick) }>
+        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+      </button>
     );
   };
 
@@ -70,12 +72,8 @@ function Header() {
             <img src={ profileIcon } alt="IconePerfil" data-testid="profile-top-btn" />
           </div>
         </Link>
-
-        { renderHeader() }
-
-        <button type="button" onClick={ () => setSearchClick(!searchClick) }>
-          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
-        </button>
+        <h1 data-testid="page-title">{pageName}</h1>
+        { renderExplore() }
       </div>
       {searchClick && renderSearch()}
     </header>
