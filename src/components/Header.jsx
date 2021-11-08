@@ -3,15 +3,39 @@ import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import MyContext from '../Context';
+import { getIngredients, getName, getFirstLetter } from '../services/API';
 
 function Header() {
   const [searchClick, setSearchClick] = useState(false);
   const { pageName, showButton } = useContext(MyContext);
-  // const [searchValue, setSearchValue] = useState('');
+  const [value, setValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleClick = async () => {
+    if (searchValue === 'ingredient') {
+      const ingredients = await getIngredients(value);
+      console.log(ingredients.meals);
+    } else if (searchValue === 'name') {
+      const name = await getName(value);
+      console.log(name.meals);
+    } else if (searchValue === 'first') {
+      if (value.length > 1) {
+        global.alert('Sua busca deve conter somente 1 (um) caracter');
+      } else {
+        const firstLetter = await getFirstLetter(value);
+        console.log(firstLetter.meals);
+      }
+    }
+  };
 
   const renderSearch = () => (
     <div>
-      <input type="text" placeholder="Search" data-testid="search-input" />
+      <input
+        type="text"
+        placeholder="Search"
+        data-testid="search-input"
+        onChange={ (e) => setValue(e.target.value) }
+      />
       <div>
         <label htmlFor="ing">
           <input
@@ -20,7 +44,7 @@ function Header() {
             id="ing"
             name="search"
             value="ingredient"
-            // onClick={ ({ target }) => setSearchValue(target.value) }
+            onClick={ ({ target }) => setSearchValue(target.value) }
           />
           Ingrediente
         </label>
@@ -31,7 +55,7 @@ function Header() {
             id="name"
             name="search"
             value="name"
-            // onClick={ ({ target }) => setSearchValue(target.value) }
+            onClick={ ({ target }) => setSearchValue(target.value) }
           />
           Nome
         </label>
@@ -42,13 +66,19 @@ function Header() {
             id="first"
             name="search"
             value="first"
-            // onClick={ ({ target }) => setSearchValue(target.value) }
+            onClick={ ({ target }) => setSearchValue(target.value) }
           />
           Primeira Letra
         </label>
       </div>
       <div>
-        <button type="button" data-testid="exec-search-btn">Buscar</button>
+        <button
+          type="button"
+          data-testid="exec-search-btn"
+          onClick={ handleClick }
+        >
+          Buscar
+        </button>
       </div>
     </div>
   );
