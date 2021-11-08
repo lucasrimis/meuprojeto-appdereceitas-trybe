@@ -5,12 +5,18 @@ import MyContext from '.';
 function Provider({ children }) {
   const [pageName, setPageName] = useState('');
   const [showButton, setShowButton] = useState(true);
+  const [food, setFood] = useState([]);
+  const [drink, setDrink] = useState([]);
 
   const contextValue = {
     pageName,
     setPageName,
     showButton,
     setShowButton,
+    setFood,
+    food,
+    setDrink,
+    drink,
   };
 
   return (
