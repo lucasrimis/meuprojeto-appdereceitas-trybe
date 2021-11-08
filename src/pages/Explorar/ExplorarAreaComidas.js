@@ -2,16 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 
-export default function Comidas() {
+export default function ExplorarAreaComidas() {
   const { setPageName, setShowButton } = useContext(MyContext);
 
   useEffect(() => {
-    setPageName('Comidas');
-  }, [setPageName]);
-
-  useEffect(() => {
+    setPageName('Explorar Origem');
     setShowButton(true);
-  }, [setShowButton]);
+  }, [setPageName, setShowButton]);
 
   return (
     <div>

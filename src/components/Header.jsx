@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import MyContext from '../Context';
 
 function Header() {
   const [searchClick, setSearchClick] = useState(false);
+  const { pageName, showButton } = useContext(MyContext);
   // const [searchValue, setSearchValue] = useState('');
 
   const renderSearch = () => (
@@ -51,6 +53,17 @@ function Header() {
     </div>
   );
 
+  const renderExplore = () => {
+    if (!showButton) {
+      return null;
+    }
+    return (
+      <button type="button" onClick={ () => setSearchClick(!searchClick) }>
+        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+      </button>
+    );
+  };
+
   return (
     <header>
       <div>
@@ -59,12 +72,8 @@ function Header() {
             <img src={ profileIcon } alt="IconePerfil" data-testid="profile-top-btn" />
           </div>
         </Link>
-
-        <h1 data-testid="page-title">Comidas</h1>
-
-        <button type="button" onClick={ () => setSearchClick(!searchClick) }>
-          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
-        </button>
+        <h1 data-testid="page-title">{pageName}</h1>
+        { renderExplore() }
       </div>
       {searchClick && renderSearch()}
     </header>
