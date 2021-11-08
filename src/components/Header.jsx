@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import MyContext from '../Context';
-import { getIngredients, getName, getFirstLetter } from '../services/API';
+import {
+  getDrinkFirstLetter,
+  getDrinkName,
+  getDrinkIngredients,
+  getMealFirstLetter,
+  getMealName,
+  getMealIngredients,
+} from '../services/API';
 
 function Header() {
   const [searchClick, setSearchClick] = useState(false);
@@ -11,20 +18,45 @@ function Header() {
   const [value, setValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
-  const handleClick = async () => {
+  const getFood = async () => {
     if (searchValue === 'ingredient') {
-      const ingredients = await getIngredients(value);
+      const ingredients = await getMealIngredients(value);
       console.log(ingredients.meals);
     } else if (searchValue === 'name') {
-      const name = await getName(value);
+      const name = await getMealName(value);
       console.log(name.meals);
     } else if (searchValue === 'first') {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
-        const firstLetter = await getFirstLetter(value);
+        const firstLetter = await getMealFirstLetter(value);
         console.log(firstLetter.meals);
       }
+    }
+  };
+
+  const getDrink = async () => {
+    if (searchValue === 'ingredient') {
+      const ingredients = await getDrinkIngredients(value);
+      console.log(ingredients.drinks);
+    } else if (searchValue === 'name') {
+      const name = await getDrinkName(value);
+      console.log(name.drinks);
+    } else if (searchValue === 'first') {
+      if (value.length > 1) {
+        global.alert('Sua busca deve conter somente 1 (um) caracter');
+      } else {
+        const firstLetter = await getDrinkFirstLetter(value);
+        console.log(firstLetter.drinks);
+      }
+    }
+  };
+
+  const handleClick = async () => {
+    if (window.location.pathname === '/comidas') {
+      await getFood();
+    } else if (window.location.pathname === '/bebidas') {
+      await getDrink();
     }
   };
 
