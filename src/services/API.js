@@ -10,6 +10,12 @@ export const getMealName = (name) => {
   return data;
 };
 
+export const getMealId = (id) => {
+  const data = fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => response.json());
+  return data;
+};
+
 export const getMealFirstLetter = (letter) => {
   const data = fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
     .then((response) => response.json());
