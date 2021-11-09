@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getDrinkName } from '../../services/API';
 import DrinkCategories from './Components/DrinkCategories';
+import Drinks from './Components/Drinks';
 
 export default function Bebidas() {
   const { setPageName, setShowButton, drink, setDrink } = useContext(MyContext);
@@ -19,31 +20,11 @@ export default function Bebidas() {
     });
   }, [setDrink]);
 
-  const renderDrinks = () => {
-    const MIN_LENGTH = 12;
-    return drink.map(({ strDrink, strDrinkThumb, idDrink }, index) => {
-      if (index < MIN_LENGTH) {
-        return (
-          <div key={ idDrink } data-testid={ `${index}-recipe-card` }>
-            <p data-testid={ `${index}-card-name` }>{ strDrink }</p>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ strDrinkThumb }
-              alt={ strDrink }
-              width="150px"
-            />
-          </div>
-        );
-      }
-      return null;
-    });
-  };
-
   return (
     <div>
       <Header />
       <DrinkCategories />
-      { drink ? renderDrinks() : null }
+      { drink ? <Drinks drink={ drink } /> : null }
       <Footer />
     </div>
   );
