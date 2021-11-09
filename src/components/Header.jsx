@@ -11,6 +11,8 @@ import {
   getMealName,
   getMealIngredients,
 } from '../services/API';
+import Search from './Header Components/Search';
+import Explore from './Header Components/Explore';
 
 function Header() {
   const [searchClick, setSearchClick] = useState(false);
@@ -81,72 +83,6 @@ function Header() {
     }
   };
 
-  const renderSearch = () => (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        data-testid="search-input"
-        onChange={ (e) => setValue(e.target.value) }
-      />
-      <div>
-        <label htmlFor="ing">
-          <input
-            type="radio"
-            data-testid="ingredient-search-radio"
-            id="ing"
-            name="search"
-            value="ingredient"
-            onClick={ ({ target }) => setSearchValue(target.value) }
-          />
-          Ingrediente
-        </label>
-        <label htmlFor="name">
-          <input
-            type="radio"
-            data-testid="name-search-radio"
-            id="name"
-            name="search"
-            value="name"
-            onClick={ ({ target }) => setSearchValue(target.value) }
-          />
-          Nome
-        </label>
-        <label htmlFor="first">
-          <input
-            type="radio"
-            data-testid="first-letter-search-radio"
-            id="first"
-            name="search"
-            value="first"
-            onClick={ ({ target }) => setSearchValue(target.value) }
-          />
-          Primeira Letra
-        </label>
-      </div>
-      <div>
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ handleClick }
-        >
-          Buscar
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderExplore = () => {
-    if (!showButton) {
-      return null;
-    }
-    return (
-      <button type="button" onClick={ () => setSearchClick(!searchClick) }>
-        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
-      </button>
-    );
-  };
-
   return (
     <header>
       <div>
@@ -156,9 +92,19 @@ function Header() {
           </div>
         </Link>
         <h1 data-testid="page-title">{pageName}</h1>
-        { renderExplore() }
+        <Explore
+          showButton={ showButton }
+          searchIcon={ searchIcon }
+          searchClick={ searchClick }
+          setSearchClick={ setSearchClick }
+        />
       </div>
-      {searchClick && renderSearch()}
+      {searchClick
+      && <Search
+        handleClick={ handleClick }
+        setSearchValue={ setSearchValue }
+        setValue={ setValue }
+      />}
     </header>
   );
 }
