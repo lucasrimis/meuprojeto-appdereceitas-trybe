@@ -2,7 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
-import { getMealIngredients } from '../../services/API';
+import { getMealName } from '../../services/API';
+import FoodCategories from './Components/FoodCategories';
+import Foods from './Components/Foods';
 
 export default function Comidas() {
   const { setPageName, setShowButton, food, setFood } = useContext(MyContext);
@@ -17,38 +19,17 @@ export default function Comidas() {
 
   useEffect(() => {
     async function fetchMeals() {
-      const test = 'Onion';
-      const mealsInfo = await getMealIngredients(test);
+      const mealsInfo = await getMealName('');
       setFood(mealsInfo.meals);
-      console.log(mealsInfo);
     }
     fetchMeals();
   }, [setFood]);
 
-  const renderFoods = () => {
-    const MIN_LENGTH = 12;
-    return food.map(({ strMeal, strMealThumb, idMeal }, index) => {
-      if (index < MIN_LENGTH) {
-        return (
-          <div key={ idMeal } data-testid={ `${index}-recipe-card` }>
-            <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ strMealThumb }
-              alt={ strMeal }
-              width="150px"
-            />
-          </div>
-        );
-      }
-      return null;
-    });
-  };
-
   return (
     <div>
       <Header />
-      { food ? renderFoods() : null }
+      <FoodCategories />
+      { food ? <Foods food={ food } /> : null }
       <Footer />
     </div>
   );

@@ -33,3 +33,28 @@ export const getDrinkFirstLetter = (letter) => {
     .then((response) => response.json());
   return data;
 };
+
+export const getFoodCategories = () => {
+  const data = fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json());
+  return data;
+};
+
+export const getDrinkCategories = () => {
+  const data = fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json());
+  return data;
+};
+
+export const getFoodFilter = (food) => {
+  const data = fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${food}`)
+    .then((response) => response.json());
+  return data;
+};
+
+export const getDrinkFilter = (drink) => {
+  const data = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`)
+    .then((response) => response.json());
+  console.log(data);
+  return data;
+};

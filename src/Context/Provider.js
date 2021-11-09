@@ -7,6 +7,7 @@ function Provider({ children }) {
   const [showButton, setShowButton] = useState(true);
   const [food, setFood] = useState([]);
   const [drink, setDrink] = useState([]);
+  const [nome, setNome] = useState('');
 
   const contextValue = {
     pageName,
@@ -17,6 +18,8 @@ function Provider({ children }) {
     food,
     setDrink,
     drink,
+    nome,
+    setNome,
   };
 
   return (
