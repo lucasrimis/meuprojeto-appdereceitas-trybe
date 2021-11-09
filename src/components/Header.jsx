@@ -83,17 +83,6 @@ function Header() {
     }
   };
 
-  const renderExplore = () => {
-    if (!showButton) {
-      return null;
-    }
-    return (
-      <button type="button" onClick={ () => setSearchClick(!searchClick) }>
-        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
-      </button>
-    );
-  };
-
   return (
     <header>
       <div>
