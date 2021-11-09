@@ -2,14 +2,21 @@ import React, { useContext, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
+import { getDrinkName } from '../../services/API';
 
 export default function Bebidas() {
-  const { setPageName, setShowButton, drink } = useContext(MyContext);
+  const { setPageName, setShowButton, drink, setDrink } = useContext(MyContext);
 
   useEffect(() => {
     setPageName('Bebidas');
     setShowButton(true);
   }, [setPageName, setShowButton]);
+
+  useEffect(() => {
+    getDrinkName('').then((response) => {
+      setDrink(response.drinks);
+    });
+  }, [setDrink]);
 
   const renderDrinks = () => {
     const MIN_LENGTH = 12;
