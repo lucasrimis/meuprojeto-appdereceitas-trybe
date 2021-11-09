@@ -17,33 +17,41 @@ function Header() {
   const { pageName, showButton, setFood, setDrink } = useContext(MyContext);
   const [value, setValue] = useState('');
   const [searchValue, setSearchValue] = useState('ingredient');
+  const semReceitas = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
+
+  const noFoodRecipes = (busca) => {
+    if (!busca) {
+      return global
+        .alert(semReceitas);
+    } if (busca.length === 1) {
+      window.location.href = `/comidas/${busca[0].idMeal}`;
+    }
+    setFood(busca);
+  };
+
+  const noDrinkRecipes = (busca) => {
+    if (!busca) {
+      return global
+        .alert(semReceitas);
+    } if (busca.length === 1) {
+      window.location.href = `/bebidas/${busca[0].idDrink}`;
+    }
+    setDrink(busca);
+  };
 
   const getFood = async () => {
     if (searchValue === 'ingredient') {
       const ingredients = await getMealIngredients(value);
-      setFood(ingredients.meals);
-      if (!ingredients.meals) {
-        return global
-          .alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      }
-      if (ingredients.meals.length === 1) {
-        window.location.href = `/comidas/${ingredients.meals[0].idMeal}`;
-      }
+      noFoodRecipes(ingredients.meals);
     } else if (searchValue === 'name') {
       const name = await getMealName(value);
-      setFood(name.meals);
-      if (name.meals.length === 1) {
-        window.location.href = `/comidas/${name.meals[0].idMeal}`;
-      }
+      noFoodRecipes(name.meals);
     } else if (searchValue === 'first') {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
         const firstLetter = await getMealFirstLetter(value);
-        setFood(firstLetter.meals);
-        if (firstLetter.meals.length === 1) {
-          window.location.href = `/comidas/${firstLetter.meals[0].idMeal}`;
-        }
+        noFoodRecipes(firstLetter.meals);
       }
     }
   };
@@ -51,29 +59,16 @@ function Header() {
   const getDrink = async () => {
     if (searchValue === 'ingredient') {
       const ingredients = await getDrinkIngredients(value);
-      setDrink(ingredients.drinks);
-      if (!ingredients.drinks) {
-        return global
-          .alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      }
-      if (ingredients.drinks.length === 1) {
-        window.location.href = `/bebidas/${ingredients.drinks[0].idDrink}`;
-      }
+      noDrinkRecipes(ingredients.drinks);
     } else if (searchValue === 'name') {
       const name = await getDrinkName(value);
-      setDrink(name.drinks);
-      if (name.drinks.length === 1) {
-        window.location.href = `/bebidas/${name.drinks[0].idDrink}`;
-      }
+      noDrinkRecipes(name.drinks);
     } else if (searchValue === 'first') {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
         const firstLetter = await getDrinkFirstLetter(value);
-        setDrink(firstLetter.drinks);
-        if (firstLetter.drinks.length === 1) {
-          window.location.href = `/bebidas/${firstLetter.drinks[0].idDrink}`;
-        }
+        noDrinkRecipes(firstLetter.drinks);
       }
     }
   };
