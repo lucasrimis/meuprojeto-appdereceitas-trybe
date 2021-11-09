@@ -45,3 +45,16 @@ export const getDrinkCategories = () => {
     .then((response) => response.json());
   return data;
 };
+
+export const getFoodFilter = (food) => {
+  const data = fetch(`www.themealdb.com/api/json/v1/1/filter.php?c=${food}`)
+    .then((response) => response.json());
+  return data;
+};
+
+export const getDrinkFilter = (drink) => {
+  const data = fetch(`www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`)
+    .then((response) => response.json());
+  console.log(data);
+  return data;
+};

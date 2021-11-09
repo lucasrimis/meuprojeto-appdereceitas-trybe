@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { getFoodCategories } from '../../../services/API';
+import React, { useContext, useEffect, useState } from 'react';
+import MyContext from '../../../Context';
+import { getFoodCategories, getFoodFilter } from '../../../services/API';
 
 export default function FoodCategories() {
+  const { setFood } = useContext(MyContext);
   const [foodCategories, setFoodCategories] = useState([]);
   const MIN_CATEGORIES = 0;
   const MAX_CATEGORIES = 5;
@@ -14,6 +16,13 @@ export default function FoodCategories() {
     fetchCategories();
   }, [setFoodCategories]);
 
+  const handleClick = async ({ target: { name } }) => {
+    console.log(name);
+    const filteredCategory = await getFoodFilter(name);
+    console.log(filteredCategory.meals);
+    setFood(filteredCategory.meals);
+  };
+
   return (
     <div>
       { foodCategories.map(({ strCategory }) => (
@@ -21,6 +30,8 @@ export default function FoodCategories() {
           data-testid={ `${strCategory}-category-filter` }
           type="button"
           key={ strCategory }
+          name={ strCategory }
+          onClick={ handleClick }
         >
           { strCategory }
         </button>

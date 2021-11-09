@@ -22,7 +22,6 @@ export default function Comidas() {
       const test = 'Onion';
       const mealsInfo = await getMealIngredients(test);
       setFood(mealsInfo.meals);
-      console.log(mealsInfo);
     }
     fetchMeals();
   }, [setFood]);
