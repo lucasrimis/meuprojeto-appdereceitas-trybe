@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
+import { getMealIngredients } from '../../services/API';
 
 export default function Comidas() {
-  const { setPageName, setShowButton, food } = useContext(MyContext);
+  const { setPageName, setShowButton, food, setFood } = useContext(MyContext);
 
   useEffect(() => {
     setPageName('Comidas');
@@ -13,6 +14,16 @@ export default function Comidas() {
   useEffect(() => {
     setShowButton(true);
   }, [setShowButton]);
+
+  useEffect(() => {
+    async function fetchMeals() {
+      const test = 'Onion';
+      const mealsInfo = await getMealIngredients(test);
+      setFood(mealsInfo.meals);
+      console.log(mealsInfo);
+    }
+    fetchMeals();
+  }, [setFood]);
 
   const renderFoods = () => {
     const MIN_LENGTH = 12;
