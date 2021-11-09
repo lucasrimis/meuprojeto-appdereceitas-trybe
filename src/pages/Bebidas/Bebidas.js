@@ -3,6 +3,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getDrinkName } from '../../services/API';
+import DrinkCategories from './Components/DrinkCategories';
 
 export default function Bebidas() {
   const { setPageName, setShowButton, drink, setDrink } = useContext(MyContext);
@@ -41,6 +42,7 @@ export default function Bebidas() {
   return (
     <div>
       <Header />
+      <DrinkCategories />
       { drink ? renderDrinks() : null }
       <Footer />
     </div>

@@ -3,6 +3,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getMealIngredients } from '../../services/API';
+import FoodCategories from './Components/FoodCategories';
 
 export default function Comidas() {
   const { setPageName, setShowButton, food, setFood } = useContext(MyContext);
@@ -48,6 +49,7 @@ export default function Comidas() {
   return (
     <div>
       <Header />
+      <FoodCategories />
       { food ? renderFoods() : null }
       <Footer />
     </div>

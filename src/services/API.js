@@ -33,3 +33,15 @@ export const getDrinkFirstLetter = (letter) => {
     .then((response) => response.json());
   return data;
 };
+
+export const getFoodCategories = () => {
+  const data = fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json());
+  return data;
+};
+
+export const getDrinkCategories = () => {
+  const data = fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json());
+  return data;
+};
