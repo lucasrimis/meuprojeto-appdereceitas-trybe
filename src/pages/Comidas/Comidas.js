@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
-import { getMealIngredients } from '../../services/API';
+import { getMealName } from '../../services/API';
 import FoodCategories from './Components/FoodCategories';
 import Foods from './Components/Foods';
 
@@ -19,8 +19,7 @@ export default function Comidas() {
 
   useEffect(() => {
     async function fetchMeals() {
-      const test = 'Onion';
-      const mealsInfo = await getMealIngredients(test);
+      const mealsInfo = await getMealName('');
       setFood(mealsInfo.meals);
     }
     fetchMeals();
