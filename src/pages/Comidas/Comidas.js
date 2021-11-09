@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 
@@ -37,6 +38,7 @@ export default function Comidas() {
     <div>
       <Header />
       { food ? renderFoods() : null }
+      <Footer />
     </div>
   );
 }
