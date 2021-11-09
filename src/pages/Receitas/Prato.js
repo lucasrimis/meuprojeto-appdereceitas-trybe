@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getMealId } from '../../services/API';
 
 export default function Prato(props) {
@@ -27,3 +28,8 @@ export default function Prato(props) {
     </div>
   );
 }
+
+Prato.propTypes = {
+  match: PropTypes.shape({ params:
+    PropTypes.shape({ id: PropTypes.string }) }).isRequired,
+};
