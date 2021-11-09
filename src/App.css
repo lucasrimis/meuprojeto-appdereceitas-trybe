@@ -16,10 +16,10 @@
 }
 
 .footer {
-  background-color: gray;
   align-content: space-between;
+  background-color: gray;
+  bottom: 0%;
   display: flex;
-  bottom: 0px;
   position: fixed;
   width: auto;
 }
