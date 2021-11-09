@@ -16,14 +16,9 @@ export default function DrinkCategories() {
     fetchCategories();
   }, [setDrinkCategories]);
 
-  const getApi = async (nome) => {
-    const data = await getDrinkFilter(nome);
-    return data;
-  }
-
   const handleClick = async ({ target: { name } }) => {
-    const a = await getApi(name);
-    console.log(a)
+    const data = await getDrinkFilter(name);
+    setDrink(data.drinks);
   };
 
   return (

@@ -19,7 +19,6 @@ export default function FoodCategories() {
   const handleClick = async ({ target: { name } }) => {
     console.log(name);
     const filteredCategory = await getFoodFilter(name);
-    console.log(filteredCategory.meals);
     setFood(filteredCategory.meals);
   };
 
