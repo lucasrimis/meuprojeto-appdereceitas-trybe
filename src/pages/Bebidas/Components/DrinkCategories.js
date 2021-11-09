@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { getDrinkCategories } from '../../../services/API';
+import React, { useEffect, useState, useContext } from 'react';
+import { getDrinkCategories, getDrinkName } from '../../../services/API';
 import Button from './Button';
+import MyContext from '../../../Context';
 
 export default function DrinkCategories() {
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const { setDrink } = useContext(MyContext);
   const MIN_CATEGORIES = 0;
   const MAX_CATEGORIES = 5;
 
@@ -15,11 +17,23 @@ export default function DrinkCategories() {
     fetchCategories();
   }, [setDrinkCategories]);
 
+  const handleClick = async () => {
+    const data = await getDrinkName('');
+    setDrink(data.drinks);
+  };
+
   return (
     <div>
       { drinkCategories
         .map(({ strCategory }) => (
           <Button key={ strCategory } strCategory={ strCategory } />)) }
+      <button
+        type="button"
+        onClick={ handleClick }
+        data-testid="All-category-filter"
+      >
+        All
+      </button>
     </div>
   );
 }

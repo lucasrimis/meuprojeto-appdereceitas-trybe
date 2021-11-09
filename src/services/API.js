@@ -55,6 +55,5 @@ export const getFoodFilter = (food) => {
 export const getDrinkFilter = (drink) => {
   const data = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`)
     .then((response) => response.json());
-  console.log(data);
   return data;
 };
