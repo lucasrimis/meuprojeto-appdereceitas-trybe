@@ -17,11 +17,11 @@
 
 .footer {
   background-color: gray;
-  display: flex;
   align-content: space-between;
-  width: auto;
+  display: flex;
+  bottom: 0px;
   position: fixed;
-  bottom:0px
+  width: auto;
 }
 
 .footerIcon {
