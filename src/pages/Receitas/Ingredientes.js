@@ -28,7 +28,7 @@ export default function Ingredientes({ recipeInfo }) {
     </div>
   );
 }
-
+// xablau
 Ingredientes.propTypes = {
   recipeInfo: PropTypes.objectOf(PropTypes.string).isRequired,
 };
