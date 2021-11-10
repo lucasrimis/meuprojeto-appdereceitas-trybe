@@ -7,12 +7,17 @@ import Ingredientes from './Ingredientes';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
+  const [url, setUrl] = useState('a');
 
   useEffect(() => {
     async function fetchDetalhe() {
       const { match: { params: { id } } } = props;
       const comidaInfo = await getMealId(id);
       setComidaDetalhe(comidaInfo.meals[0]);
+      const MAX_CARACTERES = 32;
+      const a = comidaInfo.meals[0]
+        .strYoutube.substring(comidaInfo.meals[0].strYoutube.length, MAX_CARACTERES);
+      setUrl(a);
     }
     fetchDetalhe();
   }, [props]);
@@ -43,9 +48,9 @@ export default function Prato(props) {
       </video> */}
       <iframe
         title="Video da receita"
-        width="420"
+        width="560"
         height="315"
-        src={ comidaDetalhe.strYoutube }
+        src={ `https://www.youtube.com/embed/${url}` }
         data-testid="video"
       />
       <div className="wrapper">

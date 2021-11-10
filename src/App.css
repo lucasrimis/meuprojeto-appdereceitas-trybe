@@ -14,14 +14,13 @@
 .wrapper {
   background-color: #0e1318;
   display: grid;
-  grid-gap: 0 5px;
+  grid-gap: 0 1px;
   grid-template-columns: repeat(6, auto);
   height: 300px;
   margin: 0 auto;
   overflow-x: scroll;
   overflow-y: hidden;
   padding: 30px 20px;
-  padding-right: 0;
   width: 350px;
 }
 
