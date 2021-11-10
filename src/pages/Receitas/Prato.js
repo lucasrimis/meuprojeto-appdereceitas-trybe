@@ -7,7 +7,7 @@ import Ingredientes from './Ingredientes';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
-  const [url, setUrl] = useState('a');
+  const [url, setUrl] = useState('');
 
   useEffect(() => {
     async function fetchDetalhe() {
@@ -44,13 +44,13 @@ export default function Prato(props) {
       >
         Your browser does not support the video tag.
       </video> */}
-      <iframe
+      { url !== '' && <iframe
         title="Video da receita"
         width="560"
         height="315"
         src={ url }
         data-testid="video"
-      />
+      />}
       <div className="wrapper">
         <DrinksRecomendados />
       </div>
