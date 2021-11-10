@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getMealId } from '../../services/API';
+import StartBtn from './Components/StartBtn';
+import DrinksRecomendados from './Components/DrinksRecomendados';
+import Ingredientes from './Ingredientes';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
@@ -10,21 +13,45 @@ export default function Prato(props) {
       const { match: { params: { id } } } = props;
       const comidaInfo = await getMealId(id);
       setComidaDetalhe(comidaInfo.meals[0]);
-      console.log(comidaInfo);
     }
     fetchDetalhe();
   }, [props]);
 
   return (
     <div>
-      <img src="" alt="" data-testid="recipe-photo" />
+      <img
+        src={ comidaDetalhe.strMealThumb }
+        width="150px"
+        alt="Foto da receita pronta"
+        data-testid="recipe-photo"
+      />
       <h1 data-testid="recipe-title">{comidaDetalhe.strMeal}</h1>
       <p data-testid="recipe-category">{comidaDetalhe.strCategory}</p>
       <img src="" alt="" data-testid="share-btn" />
       <img src="" alt="" data-testid="favorite-btn" />
-      <p data-testid={ `${0}-ingredient-name-and-measure` }>ingredientes</p>
-      <p data-testid="instructions">Instruções</p>
-      <h2>Ingredientes</h2>
+      <Ingredientes recipeInfo={ comidaDetalhe } />
+      <p data-testid="instructions">{comidaDetalhe.strInstructions}</p>
+      <h2>Video</h2>
+      {/* <video
+        src={ comidaDetalhe.strYoutube }
+        data-testid="video"
+        width="320"
+        height="240"
+        controls
+      >
+        Your browser does not support the video tag.
+      </video> */}
+      <iframe
+        title="Video da receita"
+        width="420"
+        height="315"
+        src={ comidaDetalhe.strYoutube }
+        data-testid="video"
+      />
+      <div className="wrapper">
+        <DrinksRecomendados />
+      </div>
+      <StartBtn path={ `/comidas/${comidaDetalhe.idMeal}/in-progress` } />
     </div>
   );
 }

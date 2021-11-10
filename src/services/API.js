@@ -34,6 +34,12 @@ export const getDrinkName = (name) => {
   return data;
 };
 
+export const getDrinkId = (id) => {
+  const data = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => response.json());
+  return data;
+};
+
 export const getDrinkFirstLetter = (letter) => {
   const data = fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
     .then((response) => response.json());
