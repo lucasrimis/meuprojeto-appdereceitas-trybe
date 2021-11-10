@@ -14,9 +14,7 @@ export default function Prato(props) {
       const { match: { params: { id } } } = props;
       const comidaInfo = await getMealId(id);
       setComidaDetalhe(comidaInfo.meals[0]);
-      const MAX_CARACTERES = 32;
-      const a = comidaInfo.meals[0]
-        .strYoutube.substring(comidaInfo.meals[0].strYoutube.length, MAX_CARACTERES);
+      const a = comidaInfo.meals[0].strYoutube.replace('/watch?v=', '/embed/');
       setUrl(a);
     }
     fetchDetalhe();
@@ -50,7 +48,7 @@ export default function Prato(props) {
         title="Video da receita"
         width="560"
         height="315"
-        src={ `https://www.youtube.com/embed/${url}` }
+        src={ url }
         data-testid="video"
       />
       <div className="wrapper">
