@@ -14,22 +14,20 @@
 .wrapper {
   background-color: #0e1318;
   display: grid;
-  grid-gap: 0 50px;
+  grid-gap: 0 1px;
   grid-template-columns: repeat(6, auto);
   height: 300px;
   margin: 0 auto;
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: 30px 60px;
-  padding-right: 0;
-  width: 500px;
+  padding: 30px 20px;
+  width: 350px;
 }
 
 .item {
-  border-radius: 5px;
-  height: 240px;
+  height: 150px;
   padding: 0 10px;
-  width: 250px;
+  width: 180px;
 }
 
 .startBtn {
