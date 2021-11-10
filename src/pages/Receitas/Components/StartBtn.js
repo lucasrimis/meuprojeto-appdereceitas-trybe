@@ -1,20 +1,40 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from '../../../Context';
+import handleClick from './handleClick';
 
 export default function StartBtn(props) {
+  const [verificar, setVerificar] = useState(false);
   const { path } = props;
-  const { click, setClick } = useContext(MyContext);
+  const id = window.location.pathname.split('/')[2];
+  const caminho = window.location.pathname;
+  console.log(typeof path);
+
+  useEffect(() => {
+    const iniciar = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (iniciar === null) {
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ meals: {}, cocktails: {} }));
+    }
+    const a = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (caminho.includes('comidas')) {
+      return a.meals[id] ? setVerificar(true) : setVerificar(false);
+    }
+
+    if (caminho.includes('bebidas')) {
+      return a.cocktails[id] ? setVerificar(true) : setVerificar(false);
+    }
+  }, [id, caminho]);
+
   return (
     <Link to={ path }>
       <button
         className="startBtn"
         data-testid="start-recipe-btn"
         type="button"
-        onClick={ () => setClick(!click) }
+        onClick={ () => handleClick(verificar, caminho, id) }
       >
-        {click ? 'Continuar Receita' : 'Começar Receita'}
+        {verificar ? 'Continuar Receita' : 'Começar Receita'}
       </button>
     </Link>
   );

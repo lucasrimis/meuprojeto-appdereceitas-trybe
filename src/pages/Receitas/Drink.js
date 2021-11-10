@@ -47,7 +47,10 @@ export default function Drink(props) {
       <div className="wrapper">
         <ComidasRecomendadas />
       </div>
-      <StartBtn path={ `/bebidas/${drinkDetalhe.idDrink}/in-progress` } />
+      <StartBtn
+        path={ `/bebidas/${drinkDetalhe.idDrink}/in-progress` }
+        id={ drinkDetalhe.idDrink }
+      />
     </div>
   );
 }

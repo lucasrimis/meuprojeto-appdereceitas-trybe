@@ -58,7 +58,10 @@ export default function Prato(props) {
       <div className="wrapper">
         <DrinksRecomendados />
       </div>
-      <StartBtn path={ `/comidas/${comidaDetalhe.idMeal}/in-progress` } />
+      <StartBtn
+        path={ `/comidas/${comidaDetalhe.idMeal}/in-progress` }
+        id={ comidaDetalhe.idMeal }
+      />
     </div>
   );
 }
