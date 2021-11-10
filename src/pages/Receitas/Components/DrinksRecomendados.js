@@ -11,7 +11,7 @@ export default function DrinksRecomendados() {
     async function fetchDrinks() {
       const drinksInfo = await getDrinkName('');
       setDrink(drinksInfo.drinks);
-      console.log(drinksInfo);
+      // console.log(drinksInfo);
     }
     fetchDrinks();
   }, [setDrink]);
