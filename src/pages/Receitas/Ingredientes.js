@@ -10,6 +10,9 @@ export default function Ingredientes({ recipeInfo }) {
   return (
     <div>
       <h2>Ingredientes</h2>
+      { recipeInfo.strAlcoholic
+        ? <p data-testid="recipe-category">{recipeInfo.strAlcoholic}</p>
+        : null }
       <ul>
         { ingredientes.map((key, index) => (
           <li
