@@ -4,10 +4,13 @@ import { getMealId } from '../../services/API';
 import StartBtn from './Components/StartBtn';
 import DrinksRecomendados from './Components/DrinksRecomendados';
 import Ingredientes from './Ingredientes';
+import shareIcon from '../../images/shareIcon.svg';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
   const [url, setUrl] = useState('');
+  const [copiado, setCopiado] = useState(false);
 
   useEffect(() => {
     async function fetchDetalhe() {
@@ -20,6 +23,11 @@ export default function Prato(props) {
     fetchDetalhe();
   }, [props]);
 
+  const handleClick = () => {
+    navigator.clipboard.writeText(window.location);
+    setCopiado(true);
+  };
+
   return (
     <div>
       <img
@@ -30,20 +38,16 @@ export default function Prato(props) {
       />
       <h1 data-testid="recipe-title">{comidaDetalhe.strMeal}</h1>
       <p data-testid="recipe-category">{comidaDetalhe.strCategory}</p>
-      <img src="" alt="" data-testid="share-btn" />
-      <img src="" alt="" data-testid="favorite-btn" />
+      <button type="button" onClick={ handleClick }>
+        <img src={ shareIcon } alt="" data-testid="share-btn" />
+      </button>
+      {copiado && <p>Link copiado!</p>}
+      <button type="button">
+        <img src={ whiteHeart } alt="" data-testid="favorite-btn" />
+      </button>
       <Ingredientes recipeInfo={ comidaDetalhe } />
       <p data-testid="instructions">{comidaDetalhe.strInstructions}</p>
       <h2>Video</h2>
-      {/* <video
-        src={ comidaDetalhe.strYoutube }
-        data-testid="video"
-        width="320"
-        height="240"
-        controls
-      >
-        Your browser does not support the video tag.
-      </video> */}
       { url !== '' && <iframe
         title="Video da receita"
         width="560"
