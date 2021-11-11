@@ -44,7 +44,7 @@ export default function Perfil() {
         <button
           data-testid="profile-logout-btn"
           type="button"
-          onClick={handleClick }
+          onClick={ handleClick }
         >
           Sair
         </button>
