@@ -6,6 +6,8 @@ import ComidasRecomendadas from './Components/ComidasRecomendadas';
 import Ingredientes from './Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import FavoriteButton from './Components/FavoriteButton';
 
 export default function Drink(props) {
   const [drinkDetalhe, setDrinkDetalhe] = useState({});
@@ -39,9 +41,12 @@ export default function Drink(props) {
         <img src={ shareIcon } alt="" data-testid="share-btn" />
       </button>
       {copiado && <p>Link copiado!</p>}
-      <button type="button">
-        <img src={ whiteHeart } alt="" data-testid="favorite-btn" />
-      </button>
+      <FavoriteButton
+        detail={ drinkDetalhe }
+        heart={ whiteHeart }
+        redHeart={ blackHeart }
+        typeofFood="comida"
+      />
       <Ingredientes recipeInfo={ drinkDetalhe } />
       <p data-testid="instructions">{drinkDetalhe.strInstructions}</p>
       <div className="wrapper">

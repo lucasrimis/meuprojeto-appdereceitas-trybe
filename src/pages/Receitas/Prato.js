@@ -6,6 +6,8 @@ import DrinksRecomendados from './Components/DrinksRecomendados';
 import Ingredientes from './Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import FavoriteButton from './Components/FavoriteButton';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
@@ -41,10 +43,13 @@ export default function Prato(props) {
       <button type="button" onClick={ handleClick }>
         <img src={ shareIcon } alt="" data-testid="share-btn" />
       </button>
-      {copiado && <p>Link copiado!</p>}
-      <button type="button">
-        <img src={ whiteHeart } alt="" data-testid="favorite-btn" />
-      </button>
+      { copiado ? <p>Link copiado!</p> : null }
+      <FavoriteButton
+        detail={ comidaDetalhe }
+        heart={ whiteHeart }
+        redHeart={ blackHeart }
+        type="comida"
+      />
       <Ingredientes recipeInfo={ comidaDetalhe } />
       <p data-testid="instructions">{comidaDetalhe.strInstructions}</p>
       <h2>Video</h2>

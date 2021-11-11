@@ -8,7 +8,6 @@ export default function StartBtn(props) {
   const { path } = props;
   const id = window.location.pathname.split('/')[2];
   const caminho = window.location.pathname;
-  console.log(typeof path);
 
   useEffect(() => {
     const iniciar = JSON.parse(localStorage.getItem('inProgressRecipes'));
