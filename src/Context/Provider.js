@@ -9,6 +9,7 @@ function Provider({ children }) {
   const [drink, setDrink] = useState([]);
   const [nome, setNome] = useState('');
   const [click, setClick] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const contextValue = {
     pageName,
@@ -23,6 +24,8 @@ function Provider({ children }) {
     setNome,
     click,
     setClick,
+    isFavorite,
+    setIsFavorite,
   };
 
   return (

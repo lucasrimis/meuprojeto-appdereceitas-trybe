@@ -1,7 +1,7 @@
 import { addRecipe, getFavoriteRecipes, removeRecipe }
   from '../../../services/helpers/getFavorites';
 
-export default function handleFavoritesClick(type, detail) {
+export default function handleFavoritesClick(type, detail, setIsFavorite) {
   const favoriteMeal = {
     id: detail.idMeal,
     type,
@@ -22,17 +22,27 @@ export default function handleFavoritesClick(type, detail) {
   };
 
   const getRecipes = getFavoriteRecipes();
-  const alreadyFavorite = getRecipes.some((recipe) => recipe.id === favoriteMeal.id);
+  const foodAlreadyFavorite = getRecipes.some((recipe) => recipe.id === favoriteMeal.id);
+  const drinkAlreadyFavorite = getRecipes
+    .some((recipe) => recipe.id === favoriteDrink.id);
 
-  if (alreadyFavorite) {
+  if (foodAlreadyFavorite) {
     removeRecipe(favoriteMeal);
+    setIsFavorite(false);
   }
-  if (!alreadyFavorite) {
+  if (drinkAlreadyFavorite) {
+    removeRecipe(favoriteDrink);
+    setIsFavorite(false);
+  }
+
+  if (!foodAlreadyFavorite && !drinkAlreadyFavorite) {
     if (type === 'comida') {
       addRecipe(favoriteMeal);
+      setIsFavorite(true);
     }
     if (type === 'bebida') {
       addRecipe(favoriteDrink);
+      setIsFavorite(true);
     }
   }
 }

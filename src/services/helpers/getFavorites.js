@@ -14,10 +14,8 @@ export const getFavoriteRecipes = () => {
 };
 
 export const addRecipe = (recipe) => {
-  if (recipe) {
-    const favoriteRecipes = readFavoriteRecipes();
-    saveFavoriteRecipes([...favoriteRecipes, recipe]);
-  }
+  const favoriteRecipes = readFavoriteRecipes();
+  saveFavoriteRecipes([...favoriteRecipes, recipe]);
 };
 
 export const removeRecipe = (recipe) => {
