@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getDrinkId } from '../../services/API';
 import StartBtn from './Components/StartBtn';
 import ComidasRecomendadas from './Components/ComidasRecomendadas';
-import Ingredientes from './Ingredientes';
+import Ingredientes from './Components/Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from './Components/FavoriteButton';
 

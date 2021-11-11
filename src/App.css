@@ -30,6 +30,10 @@
   width: 180px;
 }
 
+.inputCheck:checked + .labelCheck {
+  text-decoration: line-through;
+}
+
 .startBtn {
   bottom: 0%;
   position: fixed;
