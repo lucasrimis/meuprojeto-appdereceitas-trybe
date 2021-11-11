@@ -18,8 +18,9 @@ export default function IngredientesCheckbox({ recipeInfo }) {
             <input
               type="checkbox"
               id="ingredientCheck"
+              className="inputCheck"
             />
-            <label htmlFor="ingredientCheck">
+            <label htmlFor="ingredientCheck" className="labelCheck">
               {' '}
               {recipeInfo[key]}
               {' - '}
