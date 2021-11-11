@@ -7,7 +7,7 @@ export default function handleClick(verificar, caminho, id) {
     }
     if (caminho.includes('bebidas')) {
       localStorage.setItem('inProgressRecipes', JSON
-        .stringify({ ...iniciar, cocktails: { ...iniciar.cocktails, [id]: [] } }));
+        .stringify({ ...iniciar, cocktails: { ...iniciar.cocktails, [id]: [] } })); // a
     }
   }
 }
