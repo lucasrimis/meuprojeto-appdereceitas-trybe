@@ -4,9 +4,12 @@ import { getDrinkId } from '../../services/API';
 import StartBtn from './Components/StartBtn';
 import ComidasRecomendadas from './Components/ComidasRecomendadas';
 import Ingredientes from './Ingredientes';
+import shareIcon from '../../images/shareIcon.svg';
+import FavoriteButton from './Components/FavoriteButton';
 
 export default function Drink(props) {
   const [drinkDetalhe, setDrinkDetalhe] = useState({});
+  const [copiado, setCopiado] = useState(false);
 
   useEffect(() => {
     async function fetchDetalhe() {
@@ -16,6 +19,11 @@ export default function Drink(props) {
     }
     fetchDetalhe();
   }, [props]);
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(window.location);
+    setCopiado(true);
+  };
 
   return (
     <div>
@@ -27,14 +35,23 @@ export default function Drink(props) {
       />
       <h1 data-testid="recipe-title">{drinkDetalhe.strDrink}</h1>
       <p data-testid="recipe-category">{drinkDetalhe.strCategory}</p>
-      <img src="" alt="" data-testid="share-btn" />
-      <img src="" alt="" data-testid="favorite-btn" />
+      <button type="button" onClick={ handleClick }>
+        <img src={ shareIcon } alt="" data-testid="share-btn" />
+      </button>
+      {copiado && <p>Link copiado!</p>}
+      <FavoriteButton
+        detail={ drinkDetalhe }
+        type="bebida"
+      />
       <Ingredientes recipeInfo={ drinkDetalhe } />
       <p data-testid="instructions">{drinkDetalhe.strInstructions}</p>
       <div className="wrapper">
         <ComidasRecomendadas />
       </div>
-      <StartBtn path={ `/bebidas/${drinkDetalhe.idDrink}/in-progress` } />
+      <StartBtn
+        path={ `/bebidas/${drinkDetalhe.idDrink}/in-progress` }
+        id={ drinkDetalhe.idDrink }
+      />
     </div>
   );
 }

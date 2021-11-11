@@ -5,7 +5,7 @@ import MyContext from '../../../Context';
 
 export default function DrinkCategories() {
   const [drinkCategories, setDrinkCategories] = useState([]);
-  const { setDrink } = useContext(MyContext);
+  const { setDrink, setNome } = useContext(MyContext);
   const MIN_CATEGORIES = 0;
   const MAX_CATEGORIES = 5;
 
@@ -20,6 +20,7 @@ export default function DrinkCategories() {
   const handleClick = async () => {
     const data = await getDrinkName('');
     setDrink(data.drinks);
+    setNome('');
   };
 
   return (

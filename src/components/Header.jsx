@@ -69,7 +69,7 @@ function Header() {
       if (value.length > 1) {
         global.alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
-        const firstLetter = await getDrinkFirstLetter(value);
+        const firstLetter = await getDrinkFirstLetter(value); // b
         noDrinkRecipes(firstLetter.drinks);
       }
     }
