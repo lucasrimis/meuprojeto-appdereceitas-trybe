@@ -1,20 +1,38 @@
-import { addRecipe, getFavoriteRecipes } from '../../../services/helpers/getFavorites';
+import { addRecipe, getFavoriteRecipes, removeRecipe }
+  from '../../../services/helpers/getFavorites';
 
 export default function handleFavoritesClick(type, detail) {
-  const getFavorites = getFavoriteRecipes();
-  const favorite = {
+  const favoriteMeal = {
     id: detail.idMeal,
     type,
     area: detail.strArea,
     category: detail.strCategory,
-    alcoholicOrNot: detail.strAlcorolic ? detail.strAlcorolic : 'Not Alcoholic',
+    alcoholicOrNot: detail.strAlcorolic ? detail.strAlcorolic : '',
     name: detail.strMeal,
     image: detail.strMealThumb,
   };
-  if (type === 'comida') {
-    addRecipe(favorite);
+  const favoriteDrink = {
+    id: detail.idDrink,
+    type,
+    area: detail.strArea ? detail.strArea : '',
+    category: detail.strCategory,
+    alcoholicOrNot: detail.strAlcoholic ? detail.strAlcoholic : '',
+    name: detail.strDrink,
+    image: detail.strDrinkThumb,
+  };
+
+  const getRecipes = getFavoriteRecipes();
+  const alreadyFavorite = getRecipes.some((recipe) => recipe.id === favoriteMeal.id);
+
+  if (alreadyFavorite) {
+    removeRecipe(favoriteMeal);
   }
-  if (type === 'bebida') {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...getFavorites, favorite]));
+  if (!alreadyFavorite) {
+    if (type === 'comida') {
+      addRecipe(favoriteMeal);
+    }
+    if (type === 'bebida') {
+      addRecipe(favoriteDrink);
+    }
   }
 }

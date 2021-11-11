@@ -5,8 +5,6 @@ import StartBtn from './Components/StartBtn';
 import DrinksRecomendados from './Components/DrinksRecomendados';
 import Ingredientes from './Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
 import FavoriteButton from './Components/FavoriteButton';
 
 export default function Prato(props) {
@@ -46,8 +44,6 @@ export default function Prato(props) {
       { copiado ? <p>Link copiado!</p> : null }
       <FavoriteButton
         detail={ comidaDetalhe }
-        heart={ whiteHeart }
-        redHeart={ blackHeart }
         type="comida"
       />
       <Ingredientes recipeInfo={ comidaDetalhe } />

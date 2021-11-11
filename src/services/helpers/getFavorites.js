@@ -20,14 +20,8 @@ export const addRecipe = (recipe) => {
   }
 };
 
-export const removeRecipe = (recipe, type) => {
+export const removeRecipe = (recipe) => {
   const favoriteRecipes = readFavoriteRecipes();
-  if (type === 'comida') {
-    saveFavoriteRecipes(favoriteRecipes.filter((favRecipe) => favRecipe.id
-    !== recipe.idMeal));
-  }
-  if (type === 'bebida') {
-    saveFavoriteRecipes(favoriteRecipes.filter((favRecipe) => favRecipe.id
-    !== recipe.idDrink));
-  }
+  saveFavoriteRecipes(favoriteRecipes.filter((favRecipe) => favRecipe.id
+    !== recipe.id));
 };
