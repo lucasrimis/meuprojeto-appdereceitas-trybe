@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import handleFavoritesClick from './handleFavoritesClick';
+import { getFavoriteRecipes } from '../../../services/helpers/getFavorites';
 
 export default function FavoriteButton({ detail, redHeart, heart, type }) {
   const [isfavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (!getFavorites) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
-    }
-    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    console.log(favorites);
+    const favorites = getFavoriteRecipes();
     if (type === 'comida') {
       favorites
         .filter((favorite) => (
@@ -24,8 +20,10 @@ export default function FavoriteButton({ detail, redHeart, heart, type }) {
           favorite.id === detail.idDrink ? setIsFavorite(true)
             : setIsFavorite(false)));
     }
-    console.log(isfavorite);
-  }, [detail, type, isfavorite]);
+  }, [detail, type]);
+
+  // useEffect(() => {
+  // })
 
   return (
     <div>

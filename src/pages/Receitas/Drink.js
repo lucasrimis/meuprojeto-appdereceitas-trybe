@@ -45,7 +45,7 @@ export default function Drink(props) {
         detail={ drinkDetalhe }
         heart={ whiteHeart }
         redHeart={ blackHeart }
-        typeofFood="comida"
+        type="bebida"
       />
       <Ingredientes recipeInfo={ drinkDetalhe } />
       <p data-testid="instructions">{drinkDetalhe.strInstructions}</p>

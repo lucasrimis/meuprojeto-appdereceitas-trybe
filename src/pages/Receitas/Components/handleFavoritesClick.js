@@ -1,29 +1,20 @@
+import { addRecipe, getFavoriteRecipes } from '../../../services/helpers/getFavorites';
+
 export default function handleFavoritesClick(type, detail) {
-  const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  console.log(getFavorites);
+  const getFavorites = getFavoriteRecipes();
+  const favorite = {
+    id: detail.idMeal,
+    type,
+    area: detail.strArea,
+    category: detail.strCategory,
+    alcoholicOrNot: detail.strAlcorolic ? detail.strAlcorolic : 'Not Alcoholic',
+    name: detail.strMeal,
+    image: detail.strMealThumb,
+  };
   if (type === 'comida') {
-    const favorite = {
-      id: detail.idMeal,
-      type,
-      area: detail.strArea,
-      category: detail.strCategory,
-      alcoholicOrNot: detail.strAlcorolic ? detail.strAlcorolic : 'Not Alcoholic',
-      name: detail.strMeal,
-      image: detail.strMealThumb,
-    };
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...getFavorites, favorite]));
+    addRecipe(favorite);
   }
   if (type === 'bebida') {
-    const favorite = {
-      id: detail.idDrink,
-      type,
-      area: detail.strArea,
-      category: detail.strCategory,
-      alcoholicOrNot: detail.strAlcorolic ? detail.strAlcorolic : 'Not Alcoholic',
-      name: detail.strDrink,
-      image: detail.sttDrinkThumb,
-    };
     localStorage.setItem('favoriteRecipes', JSON.stringify([...getFavorites, favorite]));
   }
-  console.log(detail);
 }
