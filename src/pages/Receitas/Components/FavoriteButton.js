@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import handleFavoritesClick from './handleFavoritesClick';
 import { getFavoriteRecipes } from '../../../services/helpers/getFavorites';
 import blackHeart from '../../../images/blackHeartIcon.svg';
 import whiteHeart from '../../../images/whiteHeartIcon.svg';
+import MyContext from '../../../Context';
 
 export default function FavoriteButton({ detail, type }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isFavorite, setIsFavorite } = useContext(MyContext);
 
   useEffect(() => {
     const favorites = getFavoriteRecipes();
     if (type === 'comida') {
       favorites
-        .filter((favorite) => (
+        .forEach((favorite) => (
           favorite.id === detail.idMeal ? setIsFavorite(true)
             : setIsFavorite(false)));
-      console.log(isFavorite);
     }
     if (type === 'bebida') {
       favorites
-        .filter((favorite) => (
+        .forEach((favorite) => (
           favorite.id === detail.idDrink ? setIsFavorite(true)
             : setIsFavorite(false)));
     }
-  }, [isFavorite, detail, type]);
-
-  // TUDO ACONTECENDO PERFEITAMENTE, PORÉM O BOTÃO NÃO MUDA INSTANTANEAMENTE, SÓ DEPOIS DE CARREGAR A PÁGINA
+  }, [detail, type, setIsFavorite]);
 
   return (
     <div>
-      <button type="button" onClick={ () => handleFavoritesClick(type, detail) }>
+      <button
+        type="button"
+        onClick={ () => handleFavoritesClick(type, detail, setIsFavorite) }
+      >
         <img
           src={ isFavorite ? blackHeart : whiteHeart }
           alt="favorite button"
