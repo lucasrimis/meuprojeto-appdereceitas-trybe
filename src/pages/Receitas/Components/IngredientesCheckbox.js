@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import FinishBtn from './FinishBtn';
 
 export default function IngredientesCheckbox({ recipeInfo }) {
   const keys = Object.keys(recipeInfo).filter((i) => i.includes('Ingredient'));
   const ingredientes = keys.filter((key) => recipeInfo[key] !== null
     && recipeInfo[key] !== '');
+  const [checkeds, setCheckeds] = useState(0);
 
   return (
     <div>
@@ -19,6 +21,9 @@ export default function IngredientesCheckbox({ recipeInfo }) {
               type="checkbox"
               id="ingredientCheck"
               className="inputCheck"
+              onChange={
+                () => setCheckeds(document.querySelectorAll('.inputCheck:checked').length)
+              }
             />
             <label htmlFor="ingredientCheck" className="labelCheck">
               {' '}
@@ -31,6 +36,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
           </div>
         )) }
       </ul>
+      <FinishBtn checkeds={ checkeds } />
     </div>
   );
 }

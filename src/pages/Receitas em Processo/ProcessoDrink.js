@@ -5,7 +5,6 @@ import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
-import FinishBtn from '../Receitas/Components/FinishBtn';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
 
 export default function Drink(props) {
@@ -22,7 +21,7 @@ export default function Drink(props) {
   }, [props]);
 
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location);
+    window.navigator.clipboard.writeText(window.location);
     setCopiado(true);
   };
 
@@ -48,7 +47,6 @@ export default function Drink(props) {
       />
       <IngredientesCheckbox recipeInfo={ drinkDetalhe } />
       <p data-testid="instructions">{drinkDetalhe.strInstructions}</p>
-      <FinishBtn />
     </div>
   );
 }

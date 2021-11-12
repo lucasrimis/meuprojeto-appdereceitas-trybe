@@ -4,7 +4,6 @@ import { getMealId } from '../../services/API';
 import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
-import FinishBtn from '../Receitas/Components/FinishBtn';
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
@@ -20,7 +19,7 @@ export default function Prato(props) {
   }, [props]);
 
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location);
+    window.navigator.clipboard.writeText(window.location);
     setCopiado(true);
   };
 
@@ -43,7 +42,6 @@ export default function Prato(props) {
       </button>
       <IngredientesCheckbox recipeInfo={ comidaDetalhe } />
       <p data-testid="instructions">{comidaDetalhe.strInstructions}</p>
-      <FinishBtn />
     </div>
   );
 }
