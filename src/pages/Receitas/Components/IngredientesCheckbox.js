@@ -6,7 +6,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
   const keys = Object.keys(recipeInfo).filter((i) => i.includes('Ingredient'));
   const ingredientes = keys.filter((key) => recipeInfo[key] !== null
     && recipeInfo[key] !== '');
-  const [checkeds, setCheckeds] = useState(0);
+  const [checkeds, setCheckeds] = useState(1);
 
   return (
     <div>

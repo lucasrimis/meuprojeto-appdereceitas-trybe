@@ -7,6 +7,8 @@ import whiteHeart from '../../images/whiteHeartIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
 
+const copy = require('clipboard-copy');
+
 export default function Drink(props) {
   const [drinkDetalhe, setDrinkDetalhe] = useState({});
   const [copiado, setCopiado] = useState(false);
@@ -21,7 +23,7 @@ export default function Drink(props) {
   }, [props]);
 
   const handleClick = () => {
-    window.navigator.clipboard.writeText(window.location);
+    copy(window.location);
     setCopiado(true);
   };
 

@@ -7,6 +7,8 @@ import Ingredientes from './Components/Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from './Components/FavoriteButton';
 
+const copy = require('clipboard-copy');
+
 export default function Drink(props) {
   const [drinkDetalhe, setDrinkDetalhe] = useState({});
   const [copiado, setCopiado] = useState(false);
@@ -21,7 +23,7 @@ export default function Drink(props) {
   }, [props]);
 
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location);
+    copy(window.location);
     setCopiado(true);
   };
 

@@ -5,6 +5,8 @@ import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 
+const copy = require('clipboard-copy');
+
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
   const [copiado, setCopiado] = useState(false);
@@ -19,7 +21,7 @@ export default function Prato(props) {
   }, [props]);
 
   const handleClick = () => {
-    window.navigator.clipboard.writeText(window.location);
+    copy(window.location);
     setCopiado(true);
   };
 
