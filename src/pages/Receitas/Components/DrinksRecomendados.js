@@ -18,7 +18,7 @@ export default function DrinksRecomendados() {
   return drink.map(({ strDrink, strDrinkThumb, idDrink }, index) => {
     if (index < MIN_LENGTH) {
       return (
-        <Link to={ `/comidas/${idDrink}` }>
+        <Link to={ `/bebidas/${idDrink}` }>
           <div
             key={ idDrink }
             data-testid={ `${index}-recomendation-card` }

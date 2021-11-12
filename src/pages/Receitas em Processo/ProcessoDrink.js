@@ -23,7 +23,8 @@ export default function Drink(props) {
   }, [props]);
 
   const handleClick = () => {
-    copy(window.location);
+    const { match: { params: { id } } } = props;
+    copy(`http://localhost:3000/bebidas/${id}`);
     setCopiado(true);
   };
 
