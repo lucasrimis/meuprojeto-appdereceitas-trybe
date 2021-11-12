@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { getMealId } from '../../services/API';
 import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
-import FinishBtn from '../Receitas/Components/FinishBtn';
+import FavoriteButton from '../Receitas/Components/FavoriteButton';
+
+const copy = require('clipboard-copy');
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
@@ -20,7 +21,8 @@ export default function Prato(props) {
   }, [props]);
 
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location);
+    const { match: { params: { id } } } = props;
+    copy(`http://localhost:3000/comidas/${id}`);
     setCopiado(true);
   };
 
@@ -38,12 +40,12 @@ export default function Prato(props) {
         <img src={ shareIcon } alt="" data-testid="share-btn" />
       </button>
       {copiado && <p>Link copiado!</p>}
-      <button type="button">
-        <img src={ whiteHeart } alt="" data-testid="favorite-btn" />
-      </button>
+      <FavoriteButton
+        detail={ comidaDetalhe }
+        type="comida"
+      />
       <IngredientesCheckbox recipeInfo={ comidaDetalhe } />
       <p data-testid="instructions">{comidaDetalhe.strInstructions}</p>
-      <FinishBtn />
     </div>
   );
 }
