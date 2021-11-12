@@ -23,7 +23,7 @@ export default function Perfil() {
   return (
     <div>
       <Header />
-      <p data-testid="profile-email">{user.email}</p>
+      <p data-testid="profile-email">{user ? user.email : 'Nenhum usuário encontrado'}</p>
       <Link to="/receitas-feitas">
         <button
           data-testid="profile-done-btn"
