@@ -7,12 +7,8 @@ export default function FinishBtn(props) {
   const enableBtn = () => {
     const checks = document.querySelectorAll('.inputCheck').length;
     if (checks === checkeds) {
-      console.log(false);
-      console.log(checkeds);
       return false;
     }
-    console.log(checkeds);
-    console.log(true);
     return true;
   };
 
