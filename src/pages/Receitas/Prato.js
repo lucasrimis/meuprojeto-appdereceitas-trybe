@@ -7,8 +7,6 @@ import Ingredientes from './Components/Ingredientes';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from './Components/FavoriteButton';
 
-const copy = require('clipboard-copy');
-
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
   const [url, setUrl] = useState('');
@@ -26,7 +24,7 @@ export default function Prato(props) {
   }, [props]);
 
   const handleClick = () => {
-    copy(window.location);
+    navigator.clipboard.writeText(window.location);
     setCopiado(true);
   };
 
