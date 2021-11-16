@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { defaultRecipes,
+  getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
 import handleClick from './handleClick';
 
 export default function StartBtn(props) {
@@ -10,18 +12,14 @@ export default function StartBtn(props) {
   const caminho = window.location.pathname;
 
   useEffect(() => {
-    const iniciar = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (iniciar === null) {
-      localStorage.setItem('inProgressRecipes', JSON
-        .stringify({ meals: {}, cocktails: {} }));
-    }
-    const a = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    defaultRecipes();
+    const recipe = getInProgressRecipes();
     if (caminho.includes('comidas')) {
-      return a.meals[id] ? setVerificar(true) : setVerificar(false);
+      return recipe.meals[id] ? setVerificar(true) : setVerificar(false);
     }
 
     if (caminho.includes('bebidas')) {
-      return a.cocktails[id] ? setVerificar(true) : setVerificar(false);
+      return recipe.cocktails[id] ? setVerificar(true) : setVerificar(false);
     }
   }, [id, caminho]);
 

@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import FinishBtn from './FinishBtn';
+import { defaultInProgressRecipes,
+  getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
+import IngredientsCheckboxes
+  from '../../Receitas em Processo/components/IngredientsCheckboxes';
 
 export default function IngredientesCheckbox({ recipeInfo }) {
   const keys = Object.keys(recipeInfo).filter((i) => i.includes('Ingredient'));
   const ingredientes = keys.filter((key) => recipeInfo[key] !== null
     && recipeInfo[key] !== '');
   const [checkeds, setCheckeds] = useState(1);
+  const [ingredientesChecked, setIngredientesChecked] = useState([]);
+  const id = window.location.pathname.split('/')[2];
+
+  useEffect(() => {
+    if (window.location.pathname.includes('comidas')) {
+      defaultInProgressRecipes(id, 'meals');
+      const recipesInProgress = getInProgressRecipes();
+      const arrayOfingredients = recipesInProgress.meals[id];
+      setIngredientesChecked(arrayOfingredients);
+    }
+    if (window.location.pathname.includes('bebidas')) {
+      defaultInProgressRecipes(id, 'drink');
+      const recipesInProgress = getInProgressRecipes();
+      const arrayOfingredients = recipesInProgress.cocktails[id];
+      setIngredientesChecked(arrayOfingredients);
+    }
+  }, [id]);
 
   return (
     <div>
@@ -16,16 +37,15 @@ export default function IngredientesCheckbox({ recipeInfo }) {
         : null }
       <ul>
         { ingredientes.map((key, index) => (
-          <div key={ index } data-testid={ `${index}-ingredient-step` }>
-            <input
-              type="checkbox"
-              id="ingredientCheck"
-              className="inputCheck"
-              onChange={
-                () => setCheckeds(document.querySelectorAll('.inputCheck:checked').length)
-              }
-            />
-            <label htmlFor="ingredientCheck" className="labelCheck">
+          <li key={ index } data-testid={ `${index}-ingredient-step` }>
+            <label htmlFor={ recipeInfo[key] } className="labelCheck">
+              <IngredientsCheckboxes
+                setIngredientesChecked={ setIngredientesChecked }
+                setCheckeds={ setCheckeds }
+                ingredientesChecked={ ingredientesChecked }
+                recipeInfo={ recipeInfo }
+                name={ recipeInfo[key] }
+              />
               {' '}
               {recipeInfo[key]}
               {' - '}
@@ -33,7 +53,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
 
             </label>
             <br />
-          </div>
+          </li>
         )) }
       </ul>
       <FinishBtn checkeds={ checkeds } />

@@ -6,6 +6,7 @@ import shareIcon from '../../images/shareIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
+import { defaultInProgressRecipes } from '../../services/helpers/inProgressRecipes';
 
 const copy = require('clipboard-copy');
 
@@ -18,6 +19,7 @@ export default function Drink(props) {
       const { match: { params: { id } } } = props;
       const drinkInfo = await getDrinkId(id);
       setDrinkDetalhe(drinkInfo.drinks[0]);
+      defaultInProgressRecipes(id, 'drink');
     }
     fetchDetalhe();
   }, [props]);
