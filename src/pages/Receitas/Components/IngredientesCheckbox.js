@@ -37,7 +37,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
         : null }
       <ul>
         { ingredientes.map((key, index) => (
-          <div key={ index } data-testid={ `${index}-ingredient-step` }>
+          <li key={ index } data-testid={ `${index}-ingredient-step` }>
             <IngredientsCheckboxes
               setIngredientesChecked={ setIngredientesChecked }
               setCheckeds={ setCheckeds }
@@ -53,7 +53,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
 
             </label>
             <br />
-          </div>
+          </li>
         )) }
       </ul>
       <FinishBtn checkeds={ checkeds } />

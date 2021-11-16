@@ -28,24 +28,24 @@ export const defaultInProgressRecipes = (id, recipeType) => {
       localStorage.setItem(IN_PROGRESS_RECIPES, JSON
         .stringify({ meals: {}, cocktails: { [id]: [] } }));
     }
-  } if (recipes) {
-    if (recipeType === 'meals') {
-      localStorage.setItem(IN_PROGRESS_RECIPES, JSON.stringify({
-        ...recipes,
-        meals: {
-          ...recipes.meals,
-          [id]: [],
-        },
-      }));
-    } else {
-      localStorage.setItem(IN_PROGRESS_RECIPES, JSON.stringify({
-        ...recipes,
-        cocktails: {
-          ...recipes.cocktails,
-          [id]: [],
-        },
-      }));
-    }
+  }
+  if (recipes && recipeType === 'meals' && !recipes.meals[id]) {
+    localStorage.setItem(IN_PROGRESS_RECIPES, JSON.stringify({
+      ...recipes,
+      meals: {
+        ...recipes.meals,
+        [id]: [],
+      },
+    }));
+  }
+  if (recipes && recipeType === 'drink' && !recipes.cocktails[id]) {
+    localStorage.setItem(IN_PROGRESS_RECIPES, JSON.stringify({
+      ...recipes,
+      cocktails: {
+        ...recipes.cocktails,
+        [id]: [],
+      },
+    }));
   }
 };
 

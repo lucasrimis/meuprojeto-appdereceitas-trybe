@@ -7,28 +7,28 @@ export default function IngredientsCheckboxes(props) {
   const { setIngredientesChecked,
     setCheckeds, ingredientesChecked, recipeInfo, name } = props;
 
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState('');
 
   useEffect(() => {
     if (ingredientesChecked) {
       const checkedIngredients = ingredientesChecked
         .some((ingredient) => ingredient === name);
-      setClick(checkedIngredients);
+      setClick(checkedIngredients ? 'checked' : '');
     }
   }, [ingredientesChecked, name]);
 
-  const handleChange = () => {
+  const handleChange = (event) => {
     setCheckeds(document.querySelectorAll('.inputCheck:checked').length);
     const isChecked = ingredientesChecked.some((ingredient) => ingredient === name);
     if (isChecked) {
       const checkedIngredients = ingredientesChecked.filter((ing) => (ing !== name));
       setIngredientesChecked(checkedIngredients);
-      setClick(false);
+      setClick('');
     } else {
       const checkedIngredients = ingredientesChecked;
       checkedIngredients.push(name);
       setIngredientesChecked(checkedIngredients);
-      setClick(true);
+      setClick('checked');
     }
     const recipes = getInProgressRecipes();
     if (window.location.pathname.includes('comidas')) {
@@ -48,6 +48,8 @@ export default function IngredientsCheckboxes(props) {
         addRecipe('cocktails', name, recipeInfo.idDrink);
       }
     }
+
+    console.log(event.target.checked);
   };
 
   return (
