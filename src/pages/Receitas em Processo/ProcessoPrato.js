@@ -4,6 +4,9 @@ import { getMealId } from '../../services/API';
 import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
+import { defaultInProgressRecipes } from '../../services/helpers/inProgressRecipes';
+
+const copy = require('clipboard-copy');
 
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
@@ -14,12 +17,13 @@ export default function Prato(props) {
       const { match: { params: { id } } } = props;
       const comidaInfo = await getMealId(id);
       setComidaDetalhe(comidaInfo.meals[0]);
+      defaultInProgressRecipes(id, 'meals');
     }
     fetchDetalhe();
   }, [props]);
 
   const handleClick = () => {
-    window.navigator.clipboard.writeText(window.location);
+    copy(window.location);
     setCopiado(true);
   };
 

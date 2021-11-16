@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
+import { defaultRecipes,
+  getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
 import handleClick from './handleClick';
 
 export default function StartBtn(props) {
@@ -11,6 +12,7 @@ export default function StartBtn(props) {
   const caminho = window.location.pathname;
 
   useEffect(() => {
+    defaultRecipes();
     const recipe = getInProgressRecipes();
     if (caminho.includes('comidas')) {
       return recipe.meals[id] ? setVerificar(true) : setVerificar(false);
