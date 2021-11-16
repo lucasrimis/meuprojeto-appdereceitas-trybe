@@ -2,34 +2,33 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { addRecipe,
   removeRecipe, getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
+import handleComponents from './handleComponents';
 
 export default function IngredientsCheckboxes(props) {
   const { setIngredientesChecked,
     setCheckeds, ingredientesChecked, recipeInfo, name } = props;
 
-  const [click, setClick] = useState('');
+  const [load, setLoad] = useState(false);
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     if (ingredientesChecked) {
       const checkedIngredients = ingredientesChecked
         .some((ingredient) => ingredient === name);
-      setClick(checkedIngredients ? 'checked' : '');
+      setClick(checkedIngredients);
     }
   }, [ingredientesChecked, name]);
 
-  const handleChange = (event) => {
-    setCheckeds(document.querySelectorAll('.inputCheck:checked').length);
-    const isChecked = ingredientesChecked.some((ingredient) => ingredient === name);
-    if (isChecked) {
-      const checkedIngredients = ingredientesChecked.filter((ing) => (ing !== name));
-      setIngredientesChecked(checkedIngredients);
-      setClick('');
-    } else {
-      const checkedIngredients = ingredientesChecked;
-      checkedIngredients.push(name);
-      setIngredientesChecked(checkedIngredients);
-      setClick('checked');
-    }
+  useEffect(() => {
+    const TRES_SEGUNDOS = 3000;
+    setTimeout(() => {
+      setLoad(true);
+    }, TRES_SEGUNDOS);
+  }, []);
+
+  const handleChange = () => {
+    setCheckeds(document.querySelectorAll('.inputCheck:checked').length); // resolver aqui
+    handleComponents(ingredientesChecked, name, setIngredientesChecked, setClick);
     const recipes = getInProgressRecipes();
     if (window.location.pathname.includes('comidas')) {
       const alreadyInProgress = recipes.meals[recipeInfo.idMeal]
@@ -48,9 +47,9 @@ export default function IngredientsCheckboxes(props) {
         addRecipe('cocktails', name, recipeInfo.idDrink);
       }
     }
-
-    console.log(event.target.checked);
   };
+
+  if (!load) return <p>Loading...</p>;
 
   return (
     <input

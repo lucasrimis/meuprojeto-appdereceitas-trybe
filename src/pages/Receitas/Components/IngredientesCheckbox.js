@@ -11,7 +11,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
   const ingredientes = keys.filter((key) => recipeInfo[key] !== null
     && recipeInfo[key] !== '');
   const [checkeds, setCheckeds] = useState(1);
-  const [ingredientesChecked, setIngredientesChecked] = useState(['']);
+  const [ingredientesChecked, setIngredientesChecked] = useState([]);
   const id = window.location.pathname.split('/')[2];
 
   useEffect(() => {
@@ -38,14 +38,14 @@ export default function IngredientesCheckbox({ recipeInfo }) {
       <ul>
         { ingredientes.map((key, index) => (
           <li key={ index } data-testid={ `${index}-ingredient-step` }>
-            <IngredientsCheckboxes
-              setIngredientesChecked={ setIngredientesChecked }
-              setCheckeds={ setCheckeds }
-              ingredientesChecked={ ingredientesChecked }
-              recipeInfo={ recipeInfo }
-              name={ recipeInfo[key] }
-            />
             <label htmlFor={ recipeInfo[key] } className="labelCheck">
+              <IngredientsCheckboxes
+                setIngredientesChecked={ setIngredientesChecked }
+                setCheckeds={ setCheckeds }
+                ingredientesChecked={ ingredientesChecked }
+                recipeInfo={ recipeInfo }
+                name={ recipeInfo[key] }
+              />
               {' '}
               {recipeInfo[key]}
               {' - '}

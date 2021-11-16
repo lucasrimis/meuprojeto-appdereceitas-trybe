@@ -23,7 +23,8 @@ export default function Prato(props) {
   }, [props]);
 
   const handleClick = () => {
-    copy(window.location);
+    const { match: { params: { id } } } = props;
+    copy(`http://localhost:3000/comidas/${id}`);
     setCopiado(true);
   };
 

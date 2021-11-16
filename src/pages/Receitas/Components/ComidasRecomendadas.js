@@ -14,7 +14,7 @@ export default function Recomendadas() {
     }
     fetchMeals();
   }, [setFood]);
-  // xablau
+
   return food.map(({ strMeal, strMealThumb, idMeal }, index) => {
     if (index < MIN_LENGTH) {
       return (

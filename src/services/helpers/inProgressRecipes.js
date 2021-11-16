@@ -14,19 +14,19 @@ export const defaultRecipes = () => {
   const recipes = readRecipes();
   if (!recipes) {
     localStorage.setItem(IN_PROGRESS_RECIPES, JSON
-      .stringify({ meals: {}, cocktails: {} }));
+      .stringify({ cocktails: {}, meals: {} }));
   }
 };
 
 export const defaultInProgressRecipes = (id, recipeType) => {
   const recipes = readRecipes();
   if (!recipes) {
-    if (recipeType === 'meals') {
+    if (recipeType === 'drink') {
       localStorage.setItem(IN_PROGRESS_RECIPES, JSON
-        .stringify({ meals: { [id]: [] }, cocktails: {} }));
+        .stringify({ cocktails: { [id]: [] }, meals: {} }));
     } else {
       localStorage.setItem(IN_PROGRESS_RECIPES, JSON
-        .stringify({ meals: {}, cocktails: { [id]: [] } }));
+        .stringify({ cocktails: {}, meals: { [id]: [] } }));
     }
   }
   if (recipes && recipeType === 'meals' && !recipes.meals[id]) {
