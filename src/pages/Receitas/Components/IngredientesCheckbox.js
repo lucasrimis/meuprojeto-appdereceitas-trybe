@@ -19,13 +19,13 @@ export default function IngredientesCheckbox({ recipeInfo }) {
           <div key={ index } data-testid={ `${index}-ingredient-step` }>
             <input
               type="checkbox"
-              id="ingredientCheck"
+              id={ recipeInfo[key] }
               className="inputCheck"
               onChange={
                 () => setCheckeds(document.querySelectorAll('.inputCheck:checked').length)
               }
             />
-            <label htmlFor="ingredientCheck" className="labelCheck">
+            <label htmlFor={ recipeInfo[key] } className="labelCheck">
               {' '}
               {recipeInfo[key]}
               {' - '}
