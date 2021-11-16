@@ -69,3 +69,15 @@ export const getDrinkFilter = (drink) => {
     .then((response) => response.json());
   return data;
 };
+
+export const getRandomFood = () => {
+  const data = fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then((response) => response.json());
+  return data;
+};
+
+export const getRandomDrink = () => {
+  const data = fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then((response) => response.json());
+  return data;
+};
