@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
@@ -8,6 +8,7 @@ import Foods from './Components/Foods';
 
 export default function Comidas() {
   const { setPageName, setShowButton, food, setFood } = useContext(MyContext);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     setPageName('Comidas');
@@ -20,10 +21,21 @@ export default function Comidas() {
   useEffect(() => {
     async function fetchMeals() {
       const mealsInfo = await getMealName('');
-      setFood(mealsInfo.meals);
+      if (food.length === 0) {
+        setFood(mealsInfo.meals);
+      }
     }
     fetchMeals();
-  }, [setFood]);
+  }, [setFood, food]);
+
+  useEffect(() => {
+    const UM_SEGUNDO = 1000;
+    setTimeout(() => {
+      setLoad(true);
+    }, UM_SEGUNDO);
+  }, []);
+
+  if (!load) return <p>Loading...</p>;
 
   return (
     <div>
