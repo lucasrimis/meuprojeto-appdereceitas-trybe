@@ -8,8 +8,6 @@ import { defaultInProgressRecipes } from '../../services/helpers/inProgressRecip
 
 const copy = require('clipboard-copy');
 
-const copy = require('clipboard-copy');
-
 export default function Prato(props) {
   const [comidaDetalhe, setComidaDetalhe] = useState({});
   const [copiado, setCopiado] = useState(false);
