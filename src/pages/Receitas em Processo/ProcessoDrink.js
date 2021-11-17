@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getDrinkId } from '../../services/API';
-import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
+import IngredientesCheckbox from './components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
 import { defaultInProgressRecipes } from '../../services/helpers/inProgressRecipes';
 
@@ -46,8 +44,6 @@ export default function Drink(props) {
       {copiado && <p>Link copiado!</p>}
       <FavoriteButton
         detail={ drinkDetalhe }
-        heart={ whiteHeart }
-        redHeart={ blackHeart }
         type="bebida"
       />
       <IngredientesCheckbox recipeInfo={ drinkDetalhe } />

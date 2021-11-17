@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getMealId } from '../../services/API';
-import IngredientesCheckbox from '../Receitas/Components/IngredientesCheckbox';
+import IngredientesCheckbox from './components/IngredientesCheckbox';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from '../Receitas/Components/FavoriteButton';
 import { defaultInProgressRecipes } from '../../services/helpers/inProgressRecipes';
