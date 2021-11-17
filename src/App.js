@@ -15,6 +15,7 @@ import ExplorarBebidas from './pages/Explorar/ExplorarBebidas';
 import ExplorarIngredientesComidas from './pages/Explorar/ExplorarIngredientesComidas';
 import ExplorarIngredientesBebidas from './pages/Explorar/ExplorarIngredientesBebidas';
 import ExplorarAreaComidas from './pages/Explorar/ExplorarAreaComidas';
+import NotFound from './pages/NotFound/NotFound';
 import Perfil from './pages/Perfil/Perfil';
 import ReceitasFeitas from './pages/Receitas/ReceitasFeitas';
 import ReceitasFavoritas from './pages/Receitas/ReceitasFavoritas';
@@ -45,6 +46,7 @@ function App() {
         <Route path="/perfil" component={ Perfil } />
         <Route path="/receitas-feitas" component={ ReceitasFeitas } />
         <Route path="/receitas-favoritas" component={ ReceitasFavoritas } />
+        <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
   );
