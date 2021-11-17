@@ -16,9 +16,11 @@ export default function Bebidas() {
 
   useEffect(() => {
     getDrinkName('').then((response) => {
-      setDrink(response.drinks);
+      if (drink.length === 0) {
+        setDrink(response.drinks);
+      }
     });
-  }, [setDrink]);
+  }, [setDrink, drink]);
 
   return (
     <div>

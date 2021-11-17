@@ -81,3 +81,15 @@ export const getRandomDrink = () => {
     .then((response) => response.json());
   return data;
 };
+
+export const getMealIngredientList = () => {
+  const data = fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+    .then((response) => response.json());
+  return data;
+};
+
+export const getDrinkIngredientList = () => {
+  const data = fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+    .then((response) => response.json());
+  return data;
+};
