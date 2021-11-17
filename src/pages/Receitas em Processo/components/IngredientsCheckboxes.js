@@ -20,10 +20,10 @@ export default function IngredientsCheckboxes(props) {
   }, [ingredientesChecked, name]);
 
   useEffect(() => {
-    const TRES_SEGUNDOS = 3000;
+    const UM_SEGUNDO = 1000;
     setTimeout(() => {
       setLoad(true);
-    }, TRES_SEGUNDOS);
+    }, UM_SEGUNDO);
   }, []);
 
   const handleChange = () => {

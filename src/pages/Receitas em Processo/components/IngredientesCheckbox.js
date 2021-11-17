@@ -4,7 +4,7 @@ import FinishBtn from './FinishBtn';
 import { defaultInProgressRecipes,
   getInProgressRecipes } from '../../../services/helpers/inProgressRecipes';
 import IngredientsCheckboxes
-  from '../../Receitas em Processo/components/IngredientsCheckboxes';
+  from './IngredientsCheckboxes';
 
 export default function IngredientesCheckbox({ recipeInfo }) {
   const keys = Object.keys(recipeInfo).filter((i) => i.includes('Ingredient'));
@@ -13,6 +13,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
   const [checkeds, setCheckeds] = useState(1);
   const [ingredientesChecked, setIngredientesChecked] = useState([]);
   const id = window.location.pathname.split('/')[2];
+  const [type, setType] = useState('');
 
   useEffect(() => {
     if (window.location.pathname.includes('comidas')) {
@@ -20,12 +21,14 @@ export default function IngredientesCheckbox({ recipeInfo }) {
       const recipesInProgress = getInProgressRecipes();
       const arrayOfingredients = recipesInProgress.meals[id];
       setIngredientesChecked(arrayOfingredients);
+      setType('comida');
     }
     if (window.location.pathname.includes('bebidas')) {
       defaultInProgressRecipes(id, 'drink');
       const recipesInProgress = getInProgressRecipes();
       const arrayOfingredients = recipesInProgress.cocktails[id];
       setIngredientesChecked(arrayOfingredients);
+      setType('bebida');
     }
   }, [id]);
 
@@ -56,7 +59,7 @@ export default function IngredientesCheckbox({ recipeInfo }) {
           </li>
         )) }
       </ul>
-      <FinishBtn checkeds={ checkeds } />
+      <FinishBtn checkeds={ checkeds } type={ type } details={ recipeInfo } />
     </div>
   );
 }
