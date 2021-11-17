@@ -3,12 +3,15 @@ import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getDoneRecipes } from '../../services/helpers/doneRecipes';
 import shareIcon from '../../images/shareIcon.svg';
+import { Link } from 'react-router-dom';
 
 const copy = require('clipboard-copy');
 
 export default function ReceitasFeitas() {
   const { setPageName, setShowButton } = useContext(MyContext);
   const [copied, setCopied] = useState(false);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [filterRecipes, setFilterRecipes] = useState([]);
 
   useEffect(() => {
     setPageName('Receitas Feitas');
@@ -20,16 +23,33 @@ export default function ReceitasFeitas() {
     setCopied(true);
   };
 
-  const renderRecipes = () => {
+  useEffect(() => {
     const getRecipes = getDoneRecipes();
-    return getRecipes.map((recipe, index) => (
+    setDoneRecipes(getRecipes);
+    setFilterRecipes(getRecipes);
+  }, []);
+
+  const handleClick = ({ target: { name } }) => {
+    if (name !== 'all') {
+      const filteredRecipes = doneRecipes.filter((recipe) => recipe.type === name);
+      setFilterRecipes(filteredRecipes);
+    }
+    if (name === 'all') {
+      setFilterRecipes(doneRecipes);
+    }
+  };
+
+  const renderRecipes = () => {
+    return (filterRecipes.map((recipe, index) => (
       <div key={ index }>
-        <img
-          src={ recipe.image }
-          alt={ `Imagem de ${recipe.name}` }
-          data-testid={ `${index}-horizontal-image` }
-          width="150px"
-        />
+        <Link to={ `/${recipe.type}s/${recipe.id}` }>
+          <img
+            src={ recipe.image }
+            alt={ `Imagem de ${recipe.name}` }
+            data-testid={ `${index}-horizontal-image` }
+            width="150px"
+          />
+        </Link>
         <p
           data-testid={ `${index}-horizontal-top-text` }
         >
@@ -37,7 +57,9 @@ export default function ReceitasFeitas() {
           {' '}
           {`${recipe.type === 'bebida' ? recipe.alcoholicOrNot : ''}`}
         </p>
-        <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+        <Link to={ `/${recipe.type}s/${recipe.id}` }>
+          <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+        </Link>
         <p
           data-testid={ `${index}-horizontal-done-date` }
         >
@@ -59,15 +81,36 @@ export default function ReceitasFeitas() {
         </span>
         { recipe.type === 'comida' ? <p>{ recipe.area }</p> : null }
       </div>
-    ));
+    )));
   };
 
   return (
     <div>
       <Header />
-      <button type="button" data-testid="filter-by-all-btn">All</button>
-      <button type="button" data-testid="filter-by-food-btn">Food</button>
-      <button type="button" data-testid="filter-by-drink-btn">Drink</button>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+        name="all"
+        onClick={ handleClick }
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-food-btn"
+        name="comida"
+        onClick={ handleClick }
+      >
+        Food
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+        name="bebida"
+        onClick={ handleClick }
+      >
+        Drink
+      </button>
       { renderRecipes() }
     </div>
   );
