@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getDoneRecipes } from '../../services/helpers/doneRecipes';
 import shareIcon from '../../images/shareIcon.svg';
-import { Link } from 'react-router-dom';
 
 const copy = require('clipboard-copy');
 
@@ -39,8 +39,8 @@ export default function ReceitasFeitas() {
     }
   };
 
-  const renderRecipes = () => {
-    return (filterRecipes.map((recipe, index) => (
+  const renderRecipes = () => (
+    filterRecipes.map((recipe, index) => (
       <div key={ index }>
         <Link to={ `/${recipe.type}s/${recipe.id}` }>
           <img
@@ -82,7 +82,6 @@ export default function ReceitasFeitas() {
         { recipe.type === 'comida' ? <p>{ recipe.area }</p> : null }
       </div>
     )));
-  };
 
   return (
     <div>
