@@ -82,10 +82,9 @@ export const getRandomDrink = () => {
   return data;
 };
 
-
 export const getArea = () => {
   const data = fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
-      .then((response) => response.json());
+    .then((response) => response.json());
   return data;
 };
 
@@ -95,10 +94,9 @@ export const getMealIngredientList = () => {
   return data;
 };
 
-
 export const getMealArea = (area) => {
   const data = fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
-      .then((response) => response.json());
+    .then((response) => response.json());
   return data;
 };
 
