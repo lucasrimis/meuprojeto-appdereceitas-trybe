@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import handleDoneRecipes from './handleDoneRecipes';
 
 export default function FinishBtn(props) {
-  const { checkeds } = props;
+  const { checkeds, details, type } = props;
   const enableBtn = () => {
     const checks = document.querySelectorAll('.inputCheck').length;
     if (checks === checkeds) {
@@ -20,6 +21,7 @@ export default function FinishBtn(props) {
           type="button"
           disabled={ enableBtn() }
           className="finishBtn"
+          onClick={ () => handleDoneRecipes(type, details) }
         >
           Finalizar Receita
         </button>
@@ -30,4 +32,6 @@ export default function FinishBtn(props) {
 
 FinishBtn.propTypes = {
   checkeds: PropTypes.number.isRequired,
+  details: PropTypes.objectOf(PropTypes.string).isRequired,
+  type: PropTypes.string.isRequired,
 };
