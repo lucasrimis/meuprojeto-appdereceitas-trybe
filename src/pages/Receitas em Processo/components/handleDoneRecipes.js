@@ -23,6 +23,7 @@ export default function handleDoneRecipes(type, details) {
     doneDate: new Date(),
     tags: details.strTags ? details.strTags.split(',') : [],
   };
+  console.log(details);
 
   const getRecipes = getDoneRecipes();
   const foodAlreadyDone = getRecipes.some((recipe) => recipe.id === doneMeal.id);
