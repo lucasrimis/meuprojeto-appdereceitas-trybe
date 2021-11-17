@@ -10,7 +10,7 @@ export default function handleDoneRecipes(type, details) {
     name: details.strMeal,
     image: details.strMealThumb,
     doneDate: new Date(),
-    tags: details.strTags ? details.strTags.split(',') : [],
+    tags: details.strTags ? details.strTags.slice(0, 1).split(',') : [],
   };
   const doneDrink = {
     id: details.idDrink,
@@ -21,7 +21,7 @@ export default function handleDoneRecipes(type, details) {
     name: details.strDrink,
     image: details.strDrinkThumb,
     doneDate: new Date(),
-    tags: details.strTags ? details.strTags.split(',') : [],
+    tags: details.strTags ? details.strTags.slice(0, 1).split(',') : [],
   };
   console.log(details);
 
