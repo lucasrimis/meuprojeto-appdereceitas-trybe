@@ -3,7 +3,6 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getDrinkIngredientList } from '../../services/API';
-import IngredientCards from './Components/IngredientCards';
 
 export default function ExplorarIngredientesBebidas() {
   const { setPageName, setShowButton } = useContext(MyContext);

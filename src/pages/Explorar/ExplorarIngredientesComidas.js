@@ -3,7 +3,6 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import MyContext from '../../Context';
 import { getMealIngredientList } from '../../services/API';
-import IngredientCards from './Components/IngredientCards';
 
 export default function ExplorarIngredientesComidas() {
   const { setPageName, setShowButton } = useContext(MyContext);
@@ -23,10 +22,33 @@ export default function ExplorarIngredientesComidas() {
     fetchIngredientList();
   }, []);
 
+  function renderIngredientList() {
+    const MIN_LENGTH = 12;
+    return ingredientList.map(({ strIngredient, idIngredient }, index) => {
+      if (index < MIN_LENGTH) {
+        return (
+          <div
+            key={ idIngredient }
+            data-testid={ `${index}-ingredient-card` }
+          >
+            <p data-testid={ `${index}-card-name` }>{ strIngredient }</p>
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
+              alt={ strIngredient }
+              width="150px"
+            />
+          </div>
+        );
+      }
+      return null;
+    });
+  }
+
   return (
     <div>
       <Header />
-      { ingredientList ? <IngredientCards ingredientList={ ingredientList } /> : null }
+      { renderIngredientList() }
       <Footer />
     </div>
   );
