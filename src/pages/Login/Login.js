@@ -30,30 +30,36 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <input
-        data-testid="email-input"
-        onChange={ ({ target: { value } }) => setEmail(value) }
-        value={ email }
-        type="email"
-      />
-      <input
-        data-testid="password-input"
-        onChange={ ({ target: { value } }) => setPassword(value) }
-        value={ password }
-        type="password"
-      />
-      <Link to="/comidas">
-        <button
-          data-testid="login-submit-btn"
-          disabled={ enableButton() }
-          type="button"
-          onClick={ handleClick }
-        >
-          Submit
-        </button>
-      </Link>
-
+    <div className="form-signin">
+      <form>
+        <div className="form-floating">
+          <input
+            data-testid="email-input"
+            onChange={ ({ target: { value } }) => setEmail(value) }
+            value={ email }
+            type="email"
+            className="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+          />
+        </div>
+        <input
+          data-testid="password-input"
+          onChange={ ({ target: { value } }) => setPassword(value) }
+          value={ password }
+          type="password"
+        />
+        <Link to="/comidas">
+          <button
+            data-testid="login-submit-btn"
+            disabled={ enableButton() }
+            type="button"
+            onClick={ handleClick }
+          >
+            Submit
+          </button>
+        </Link>
+      </form>
     </div>
   );
 }
