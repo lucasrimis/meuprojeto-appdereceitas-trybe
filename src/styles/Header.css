@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header-cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: gray;
+}
+
+h1, p{
+  margin: 0;
+}
+
+.explore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.ing-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+}

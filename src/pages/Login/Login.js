@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import '../../styles/Header.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const emailValidation = () => {
     const emailCheck = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
@@ -27,39 +30,55 @@ export default function Login() {
     localStorage.setItem('mealsToken', tokenPadrao);
     localStorage.setItem('cocktailsToken', tokenPadrao);
     localStorage.setItem('user', JSON.stringify(user));
+    history.push('/comidas');
   };
 
   return (
-    <div className="form-signin">
-      <form>
-        <div className="form-floating">
-          <input
-            data-testid="email-input"
-            onChange={ ({ target: { value } }) => setEmail(value) }
-            value={ email }
-            type="email"
-            className="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-          />
-        </div>
-        <input
-          data-testid="password-input"
-          onChange={ ({ target: { value } }) => setPassword(value) }
-          value={ password }
-          type="password"
-        />
-        <Link to="/comidas">
-          <button
-            data-testid="login-submit-btn"
-            disabled={ enableButton() }
-            type="button"
-            onClick={ handleClick }
-          >
-            Submit
-          </button>
-        </Link>
-      </form>
+    <div className="d-flex flex-column justify-content-center login-cont">
+      <div
+        className="d-flex flex-column align-items-center
+        m-auto p-4 border rounded px-5
+        shadow-lg bg-body rounded"
+      >
+        <h1 className="text-center">Appetizer</h1>
+        <form onSubmit={ handleClick }>
+          <div className="form-floating">
+            <input
+              data-testid="email-input"
+              onChange={ ({ target: { value } }) => setEmail(value) }
+              value={ email }
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+            />
+            <label htmlFor="floatingInput">Email address</label>
+          </div>
+          <div className="form-floating">
+            <input
+              data-testid="password-input"
+              onChange={ ({ target: { value } }) => setPassword(value) }
+              value={ password }
+              type="password"
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
+            <label htmlFor="floatingPassword">Password</label>
+          </div>
+          <Link to="/comidas">
+            <button
+              data-testid="login-submit-btn"
+              disabled={ enableButton() }
+              type="submit"
+              onClick={ handleClick }
+              className="w-100 btn btn-lg btn-primary"
+            >
+              Submit
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

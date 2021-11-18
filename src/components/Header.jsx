@@ -85,13 +85,15 @@ function Header() {
 
   return (
     <header>
-      <div>
-        <Link to="/perfil">
-          <div>
+      <div className="header-cont">
+        <Link to="/perfil" className="explore">
+          <div className="explore">
             <img src={ profileIcon } alt="IconePerfil" data-testid="profile-top-btn" />
           </div>
         </Link>
-        <h1 data-testid="page-title">{pageName}</h1>
+        <div className="explore">
+          <h1 data-testid="page-title" className="page-title">{pageName}</h1>
+        </div>
         <Explore
           showButton={ showButton }
           searchIcon={ searchIcon }
