@@ -39,7 +39,6 @@ export default function Login() {
           value={ email }
           placeholder="E-mail"
           type="email"
-          className=""
         />
         <input
           data-testid="password-input"
@@ -47,7 +46,6 @@ export default function Login() {
           value={ password }
           placeholder="Senha"
           type="password"
-          className=""
         />
         <Link to="/comidas">
           <button
