@@ -15,7 +15,7 @@ export default function ExplorarBebidas() {
       setRandom(randomDrink.drinks[0]);
     }
     fetchRandomDrink();
-    setPageName('Explorar Bebidas');
+    setPageName('Explore Drinks');
     setShowButton(false);
   }, [setPageName, setShowButton]);
 

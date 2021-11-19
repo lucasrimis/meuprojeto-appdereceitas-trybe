@@ -15,7 +15,7 @@ export default function ExplorarComidas() {
       setRandom(randomFood.meals[0]);
     }
     fetchRandomFood();
-    setPageName('Explorar Comidas');
+    setPageName('Explore Fodds');
     setShowButton(false);
   }, [setPageName, setShowButton, setRandom]);
 

@@ -10,7 +10,7 @@ export default function Bebidas() {
   const { setPageName, setShowButton, drink, setDrink } = useContext(MyContext);
 
   useEffect(() => {
-    setPageName('Bebidas');
+    setPageName('Drinks');
     setShowButton(true);
   }, [setPageName, setShowButton]);
 

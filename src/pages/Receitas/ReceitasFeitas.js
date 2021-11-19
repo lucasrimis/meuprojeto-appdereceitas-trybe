@@ -14,7 +14,7 @@ export default function ReceitasFeitas() {
   const [filterRecipes, setFilterRecipes] = useState([]);
 
   useEffect(() => {
-    setPageName('Receitas Feitas');
+    setPageName('Recipes Done');
     setShowButton(false);
   }, [setPageName, setShowButton]);
 

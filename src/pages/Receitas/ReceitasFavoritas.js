@@ -6,7 +6,7 @@ export default function ReceitasFavoritas() {
   const { setPageName, setShowButton } = useContext(MyContext);
 
   useEffect(() => {
-    setPageName('Receitas Favoritas');
+    setPageName('Favorite Recipes');
     setShowButton(false);
   }, [setPageName, setShowButton]);
 

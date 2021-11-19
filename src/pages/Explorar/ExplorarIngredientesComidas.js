@@ -13,7 +13,7 @@ export default function ExplorarIngredientesComidas() {
   const [ingredientList, setIngredientList] = useState([]);
 
   useEffect(() => {
-    setPageName('Explorar Ingredientes');
+    setPageName('Explore Ingredients');
     setShowButton(false);
   }, [setPageName, setShowButton]);
 

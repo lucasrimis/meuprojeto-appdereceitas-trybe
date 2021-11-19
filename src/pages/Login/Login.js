@@ -35,9 +35,10 @@ export default function Login() {
         <div
           className="d-flex flex-column align-items-center
           m-auto p-4 border rounded px-5
-          shadow-lg bg-body rounded"
+          shadow-lg bg-body rounded
+          login-a"
         >
-          <h1 className="text-center">Appetizer</h1>
+          <h1 className="text-center">APPetizing</h1>
           <form onSubmit={ handleClick }>
             <div className="form-floating">
               <input

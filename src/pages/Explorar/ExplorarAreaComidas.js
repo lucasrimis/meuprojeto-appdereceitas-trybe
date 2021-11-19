@@ -7,7 +7,7 @@ export default function ExplorarAreaComidas() {
   const { setPageName, setShowButton } = useContext(MyContext);
 
   useEffect(() => {
-    setPageName('Explorar Origem');
+    setPageName('Explore Origin');
     setShowButton(true);
   }, [setPageName, setShowButton]);
 

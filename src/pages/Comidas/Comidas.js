@@ -8,10 +8,10 @@ import Foods from './Components/Foods';
 
 export default function Comidas() {
   const { setPageName, setShowButton, food, setFood } = useContext(MyContext);
-  const [load, setLoad] = useState(false);
+  // const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    setPageName('Comidas');
+    setPageName('Foods');
   }, [setPageName]);
 
   useEffect(() => {
@@ -28,14 +28,14 @@ export default function Comidas() {
     fetchMeals();
   }, [setFood, food]);
 
-  useEffect(() => {
-    const UM_SEGUNDO = 1000;
-    setTimeout(() => {
-      setLoad(true);
-    }, UM_SEGUNDO);
-  }, []);
+  // useEffect(() => {
+  //   const DOIS_SEGUNDO = 2000;
+  //   setTimeout(() => {
+  //     setLoad(true);
+  //   }, DOIS_SEGUNDO);
+  // }, []);
 
-  if (!load) return <p>Loading...</p>;
+  // if (!load) return <img className='loadImg' src='https://cdn.dribbble.com/users/645440/screenshots/3266490/loader-2_food.gif'/>;
 
   return (
     <div>
