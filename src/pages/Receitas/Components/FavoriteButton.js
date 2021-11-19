@@ -12,16 +12,10 @@ export default function FavoriteButton({ detail, type }) {
   useEffect(() => {
     const favorites = getFavoriteRecipes();
     if (type === 'comida') {
-      favorites
-        .forEach((favorite) => (
-          favorite.id === detail.idMeal ? setIsFavorite(true)
-            : setIsFavorite(false)));
+      setIsFavorite(favorites.some((favorite) => favorite.id === detail.idMeal));
     }
     if (type === 'bebida') {
-      favorites
-        .forEach((favorite) => (
-          favorite.id === detail.idDrink ? setIsFavorite(true)
-            : setIsFavorite(false)));
+      setIsFavorite(favorites.some((favorite) => favorite.id === detail.idDrink));
     }
   }, [detail, type, setIsFavorite]);
 
