@@ -14,7 +14,7 @@ export default function Explore({ showButton, searchClick, searchIcon, setSearch
         onKeyPress={ () => setSearchClick(!searchClick) }
         className="explore"
       >
-        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+        <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" className="im"/>
       </div>
     </div>
   );

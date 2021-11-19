@@ -87,8 +87,8 @@ function Header() {
   return (
     <header>
       <div className="header">
-        <Link to="/perfil">
-          <div>
+        <Link to="/perfil" className="explore">
+          <div className="explore">
             <img
               src={ profileIcon }
               alt="IconePerfil"

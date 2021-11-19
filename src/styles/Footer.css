@@ -1,6 +1,6 @@
 .footer {
   align-content: space-around;
-  background-color: rgb(54, 110, 110);
+  background-color: rgb(255, 102, 42);
   bottom: 0%;
   display: flex;
   justify-content: center;
@@ -11,4 +11,5 @@
 
 .footerIcon {
   padding-inline: 10%;
+  filter: invert(98%) sepia(13%) saturate(512%) hue-rotate(144deg) brightness(108%) contrast(97%);
 }
