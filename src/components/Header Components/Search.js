@@ -30,9 +30,10 @@ export default function Search({ handleClick, setSearchValue, setValue }) {
             value="ingredient"
             onClick={ ({ target }) => setSearchValue(target.value) }
           />
+          {' '}
           Ingrediente
         </label>
-        <label htmlFor="name">
+        <label htmlFor="name" className="ing">
           <input
             type="radio"
             data-testid="name-search-radio"
@@ -41,9 +42,10 @@ export default function Search({ handleClick, setSearchValue, setValue }) {
             value="name"
             onClick={ ({ target }) => setSearchValue(target.value) }
           />
+          {' '}
           Nome
         </label>
-        <label htmlFor="first">
+        <label htmlFor="first" className="ing">
           <input
             type="radio"
             data-testid="first-letter-search-radio"
@@ -52,6 +54,7 @@ export default function Search({ handleClick, setSearchValue, setValue }) {
             value="first"
             onClick={ ({ target }) => setSearchValue(target.value) }
           />
+          {' '}
           Primeira Letra
         </label>
       </div>

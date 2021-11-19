@@ -97,7 +97,9 @@ function Header() {
             />
           </div>
         </Link>
-        <h1 data-testid="page-title">{pageName}</h1>
+        <div className="explore">
+          <h1 data-testid="page-title" className="page-title">{pageName}</h1>
+        </div>
         <Explore
           showButton={ showButton }
           searchIcon={ searchIcon }

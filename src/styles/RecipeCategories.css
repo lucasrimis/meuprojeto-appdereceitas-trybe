@@ -6,8 +6,8 @@
 }
 
 .recipeCategories > button {
-  background: teal;
-  border: teal;
+  background: #E9730F;
+  border: transparent;
   border-radius: 5px;
   color: whitesmoke;
   font-size: small;
