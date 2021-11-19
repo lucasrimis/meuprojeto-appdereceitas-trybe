@@ -1,0 +1,28 @@
+.loginDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding-top: 40vh;
+}
+
+.loginInnerDiv {
+  align-items: center;
+  background-color: teal;
+  border-radius: 10px;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px #888888c7;
+}
+
+.loginInnerDiv > input {
+  border-radius: 5px;
+  border: transparent;
+  margin: 10px;
+}
+
+.loginButton {
+  border-radius: 5px;
+  border: transparent;
+}

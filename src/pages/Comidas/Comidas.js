@@ -41,7 +41,9 @@ export default function Comidas() {
     <div>
       <Header />
       <FoodCategories />
-      { food ? <Foods food={ food } /> : null }
+      <div className="recipeCardsDiv">
+        { food ? <Foods food={ food } /> : null }
+      </div>
       <Footer />
     </div>
   );

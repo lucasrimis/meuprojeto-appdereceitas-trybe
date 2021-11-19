@@ -1,0 +1,14 @@
+.footer {
+  align-content: space-around;
+  background-color: rgb(54, 110, 110);
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  position: fixed;
+  width: 100vw;
+}
+
+.footerIcon {
+  padding-inline: 10%;
+}

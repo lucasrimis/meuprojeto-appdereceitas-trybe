@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../../styles/Login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -30,30 +31,36 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <input
-        data-testid="email-input"
-        onChange={ ({ target: { value } }) => setEmail(value) }
-        value={ email }
-        type="email"
-      />
-      <input
-        data-testid="password-input"
-        onChange={ ({ target: { value } }) => setPassword(value) }
-        value={ password }
-        type="password"
-      />
-      <Link to="/comidas">
-        <button
-          data-testid="login-submit-btn"
-          disabled={ enableButton() }
-          type="button"
-          onClick={ handleClick }
-        >
-          Submit
-        </button>
-      </Link>
-
+    <div className="loginDiv">
+      <div className="loginInnerDiv">
+        <input
+          data-testid="email-input"
+          onChange={ ({ target: { value } }) => setEmail(value) }
+          value={ email }
+          placeholder="E-mail"
+          type="email"
+          className=""
+        />
+        <input
+          data-testid="password-input"
+          onChange={ ({ target: { value } }) => setPassword(value) }
+          value={ password }
+          placeholder="Senha"
+          type="password"
+          className=""
+        />
+        <Link to="/comidas">
+          <button
+            data-testid="login-submit-btn"
+            disabled={ enableButton() }
+            type="button"
+            onClick={ handleClick }
+            className="loginButton"
+          >
+            Submit
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

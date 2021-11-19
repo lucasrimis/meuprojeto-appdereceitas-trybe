@@ -1,0 +1,26 @@
+.header {
+  background-color: teal;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.header > button {
+  background-color: transparent;
+  border: rgb(0, 163, 163);
+}
+
+.header > img {
+  padding-top: 15px;
+  width: 100px;
+}
+
+.header > h1 {
+  margin: 0;
+}
+
+.headerImg {
+  align-content: center;
+  display: flex;
+  width: 40px;
+}

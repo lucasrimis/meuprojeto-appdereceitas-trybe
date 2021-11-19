@@ -11,14 +11,15 @@ export default function Drinks({ drink }) {
           <div
             key={ idDrink }
             data-testid={ `${index}-recipe-card` }
+            className="recipeCards"
           >
-            <p data-testid={ `${index}-card-name` }>{ strDrink }</p>
             <img
               data-testid={ `${index}-card-img` }
               src={ strDrinkThumb }
               alt={ strDrink }
               width="150px"
             />
+            <p data-testid={ `${index}-card-name` }>{ strDrink }</p>
           </div>
         </Link>
       );

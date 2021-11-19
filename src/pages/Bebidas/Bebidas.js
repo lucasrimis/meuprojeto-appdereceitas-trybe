@@ -26,7 +26,9 @@ export default function Bebidas() {
     <div>
       <Header />
       <DrinkCategories />
-      { drink ? <Drinks drink={ drink } /> : null }
+      <div className="recipeCardsDiv">
+        { drink ? <Drinks drink={ drink } /> : null }
+      </div>
       <Footer />
     </div>
   );

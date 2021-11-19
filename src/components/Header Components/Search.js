@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/Search.css';
 
 export default function Search({ handleClick, setSearchValue, setValue }) {
   return (
-    <div>
+    <div className="search">
       <input
         type="text"
         placeholder="Search"
         data-testid="search-input"
         onChange={ (e) => setValue(e.target.value) }
       />
+      <div>
+        <button
+          type="button"
+          data-testid="exec-search-btn"
+          onClick={ handleClick }
+        >
+          Buscar
+        </button>
+      </div>
       <div>
         <label htmlFor="ing">
           <input
@@ -44,15 +54,6 @@ export default function Search({ handleClick, setSearchValue, setValue }) {
           />
           Primeira Letra
         </label>
-      </div>
-      <div>
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ handleClick }
-        >
-          Buscar
-        </button>
       </div>
     </div>
   );
