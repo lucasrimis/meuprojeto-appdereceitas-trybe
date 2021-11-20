@@ -21,3 +21,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.local {
+  font-size: 10px;
+}

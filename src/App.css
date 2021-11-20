@@ -15,38 +15,8 @@ html {
   width: 100%;
 }
 
-/* https://dev.to/chiragtutlani/horizontal-slider-17b8 */
-.wrapper {
-  background-color: #0e1318;
-  display: grid;
-  grid-gap: 0 1px;
-  grid-template-columns: repeat(6, auto);
-  height: 300px;
-  margin: 0 auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 30px 20px;
-  width: 350px;
-}
-
-.item {
-  height: 150px;
-  padding: 0 10px;
-  width: 180px;
-}
-
 .inputCheck:checked + .labelCheck {
   text-decoration: line-through;
-}
-
-.startBtn {
-  bottom: 0%;
-  position: fixed;
-}
-
-.finishBtn {
-  bottom: 0%;
-  position: fixed;
 }
 
 .rocksGlass {

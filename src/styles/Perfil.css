@@ -35,3 +35,14 @@
 .logout {
   font-size: 40px;
 }
+
+.profileBtn2 {
+  background-color: #E9730F;
+  border: transparent;
+  border-radius: 10px;
+  color: white;
+  margin-top: 5vh;
+  min-width: 90vw;
+  font-size: 36px;
+  box-shadow: 5px 5px 5px gray;
+}
