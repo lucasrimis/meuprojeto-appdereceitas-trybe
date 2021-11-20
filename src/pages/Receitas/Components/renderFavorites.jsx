@@ -41,6 +41,7 @@ function RenderFavorites(props) {
             data-testid={ `${index}-horizontal-share-btn` }
             src={ shareIcon }
             onClick={ () => handleCopy(recipe.type, recipe.id) }
+            className='shareBtn'
           >
             <img src={ shareIcon } alt="" />
           </button>
