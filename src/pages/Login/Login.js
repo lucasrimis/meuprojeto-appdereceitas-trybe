@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import '../../styles/Login.css';
+import loginGif from "../../images/loginGif.gif";
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -38,7 +39,10 @@ export default function Login() {
           shadow-lg bg-body rounded
           login-a"
         >
-          <h1 className="text-center">APPetizing</h1>
+          <div className="loginHeader">
+            <h1 className="text-center">APPetizing</h1>
+            <img src={loginGif} alt=""/>
+          </div>
           <form onSubmit={ handleClick }>
             <div className="form-floating">
               <input
@@ -70,7 +74,7 @@ export default function Login() {
                 disabled={ enableButton() }
                 type="submit"
                 onClick={ handleClick }
-                className="w-100 btn btn-lg btn-danger"
+                className="w-100 btn btn-md btn-danger"
               >
                 Submit
               </button>
