@@ -3,15 +3,15 @@
 
 ## Habilidades
 
-Nesse projeto, você será capaz de:
+Nesse projeto, foi utilizado:
 
-  - Utilizar a Context API do _React_ para gerenciar estado
-  - Utilizar o _React Hook useState_
-  - Utilizar o _React Hook useContext_
-  - Utilizar o _React Hook useEffect_
-  - Criar Hooks customizados
+  - Context API do _React_ para gerenciar estado
+  - _React Hook useState_
+  - _React Hook useContext_
+  - _React Hook useEffect_
+  - Hooks customizados
   - Trabalho em equipe
-  - Uso do Trello como ferramenta kanban
+  - Trello, como ferramenta kanban
 
 
 ## O que foi desenvolvido:
